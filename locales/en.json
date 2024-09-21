@@ -1,0 +1,15 @@
+{
+  "login": {
+    "title": "Login",
+    "button": "Login",
+    "switch": "Don't have an account? Sign up"
+  },
+  "signup": {
+    "title": "Sign Up",
+    "button": "Sign Up",
+    "switch": "Already have an account? Login"
+  },
+  "username": "Username",
+  "password": "Password",
+  "email": "Email"
+}
