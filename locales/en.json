@@ -11,5 +11,47 @@
   },
   "username": "Username",
   "password": "Password",
-  "email": "Email"
+  "email": "Email",
+  "navbar": {
+    "dashboard": "Dashboard",
+    "manageProducts": "Manage Products",
+    "inventory": "Inventory",
+    "orders": "Orders",
+    "suppliers": "Suppliers",
+    "reports": "Reports",
+    "users": "User Management",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "productList": {
+    "title": "Product List",
+    "name": "Product Name",
+    "category": "Category",
+    "price": "Price",
+    "discountPrice": "Discount Price",
+    "stockQuantity": "Stock Quantity",
+    "supplier": "Supplier",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "productForm": {
+    "addTitle": "Add New Product",
+    "editTitle": "Edit Product",
+    "name": "Product Name",
+    "description": "Product Description",
+    "category": "Product Category",
+    "tags": "Tags",
+    "price": "Price",
+    "discountPrice": "Discount Price",
+    "discountPercentage": "Discount Percentage",
+    "stockQuantity": "Stock Quantity",
+    "supplier": "Supplier",
+    "barcode": "Barcode / QR Code",
+    "costPrice": "Cost Price",
+    "productURL": "Product URL",
+    "internalNotes": "Internal Notes",
+    "add": "Add Product",
+    "update": "Update Product"
+  }
 }

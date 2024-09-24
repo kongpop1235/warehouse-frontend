@@ -11,5 +11,47 @@
   },
   "username": "ชื่อผู้ใช้",
   "password": "รหัสผ่าน",
-  "email": "อีเมล"
+  "email": "อีเมล",
+  "navbar": {
+    "dashboard": "แดชบอร์ด",
+    "manageProducts": "จัดการผลิตภัณฑ์",
+    "inventory": "รายการสิ่งของ",
+    "orders": "คำสั่งซื้อ",
+    "suppliers": "ซัพพลายเออร์",
+    "reports": "รายงาน",
+    "users": "การจัดการผู้ใช้",
+    "settings": "การตั้งค่า",
+    "logout": "ออกจากระบบ"
+  },
+  "productList": {
+    "title": "รายการสินค้า",
+    "name": "ชื่อสินค้า",
+    "category": "หมวดหมู่",
+    "price": "ราคา",
+    "discountPrice": "ราคาหลังหักส่วนลด",
+    "stockQuantity": "จำนวนสต็อก",
+    "supplier": "ผู้จัดจำหน่าย",
+    "actions": "การกระทำ",
+    "edit": "แก้ไข",
+    "delete": "ลบ"
+  },
+  "productForm": {
+    "addTitle": "เพิ่มสินค้าใหม่",
+    "editTitle": "แก้ไขสินค้า",
+    "name": "ชื่อสินค้า",
+    "description": "รายละเอียดสินค้า",
+    "category": "หมวดหมู่สินค้า",
+    "tags": "แท็ก",
+    "price": "ราคา",
+    "discountPrice": "ราคาหลังหักส่วนลด",
+    "discountPercentage": "เปอร์เซ็นต์ส่วนลด",
+    "stockQuantity": "จำนวนสต็อก",
+    "supplier": "ผู้จัดจำหน่าย",
+    "barcode": "บาร์โค้ด / QR Code",
+    "costPrice": "ต้นทุนสินค้า",
+    "productURL": "URL ของสินค้า",
+    "internalNotes": "หมายเหตุภายใน",
+    "add": "เพิ่มสินค้า",
+    "update": "อัปเดตสินค้า"
+  }
 }
