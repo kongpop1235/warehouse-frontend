@@ -23,8 +23,11 @@ export default {
       redirectOn: 'root',
     },
   },
-  plugins: ['~/plugins/i18n.js'],
+  plugins: ['~/plugins/axios.js', '~/plugins/i18n.js'],
   router: {
     middleware: 'authRedirect',
   },
+  css: [
+    '~/assets/css/global.css',
+  ],
 };

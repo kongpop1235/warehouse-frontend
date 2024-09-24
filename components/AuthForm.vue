@@ -57,7 +57,7 @@ export default {
       } else {
         // Sign up
         try {
-          await this.$axios.$post('/api/auth/register', {
+          await this.$axios.$post('auth/register', {
             username: this.username,
             password: this.password,
           })
