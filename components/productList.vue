@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="product in products" :key="product.id">
+        <tr v-for="product in products" :key="product._id">
           <td>{{ product.name }}</td>
           <td>{{ product.category }}</td>
           <td>{{ product.price }}</td>
@@ -23,7 +23,7 @@
           <td>{{ product.supplier || '-' }}</td>
           <td>
             <button @click="editProduct(product)">{{ $t('productList.edit') }}</button>
-            <button @click="deleteProduct(product.id)">{{ $t('productList.delete') }}</button>
+            <button @click="deleteProduct(product._id)">{{ $t('productList.delete') }}</button>
           </td>
         </tr>
       </tbody>
@@ -33,13 +33,14 @@
 
 <script>
 export default {
-  props: ['products'], // รับข้อมูลสินค้าผ่าน prop
+  props: ['products'], // Receive product information through prop
   methods: {
     editProduct(product) {
-      this.$emit('edit', product) // ส่ง event กลับไปให้ component หลัก
+      this.$emit('edit', product) // Send an event back to the main component.
     },
-    deleteProduct(id) {
-      this.$emit('delete', id) // ส่ง event กลับไปให้ component หลัก
+    async deleteProduct(id) {
+      const response = await this.$axios.delete('/products/' + id, this.product)
+      // this.$emit('delete', _id) // Send an event back to the main component.
     },
   },
 }

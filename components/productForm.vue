@@ -85,12 +85,6 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const token =
-          this.$store.getters['auth/getToken'] || this.$cookies.get('token')
-        if (!token) {
-          throw new Error('No token available')
-        }
-
         if (this.isEdit) {
           await this.$axios.put(`/products/${this.product.id}`, this.product)
           this.$emit('updateProduct', this.product) // Return to the main component.
