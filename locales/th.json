@@ -15,7 +15,6 @@
   "navbar": {
     "dashboard": "แดชบอร์ด",
     "manageProducts": "จัดการผลิตภัณฑ์",
-    "inventory": "รายการสิ่งของ",
     "orders": "คำสั่งซื้อ",
     "suppliers": "ซัพพลายเออร์",
     "reports": "รายงาน",

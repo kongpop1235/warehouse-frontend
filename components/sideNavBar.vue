@@ -3,7 +3,6 @@
     <ul>
       <li><nuxt-link to="/dashboard">{{$t('navbar.dashboard')}}</nuxt-link></li>
       <li><nuxt-link to="/products">{{$t('navbar.manageProducts')}}</nuxt-link></li>
-      <li><nuxt-link to="/inventory">{{$t('navbar.inventory')}}</nuxt-link></li>
       <li><nuxt-link to="/orders">{{$t('navbar.orders')}}</nuxt-link></li>
       <li><nuxt-link to="/suppliers">{{$t('navbar.suppliers')}}</nuxt-link></li>
       <li><nuxt-link to="/reports">{{$t('navbar.reports')}}</nuxt-link></li>

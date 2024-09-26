@@ -15,7 +15,6 @@
   "navbar": {
     "dashboard": "Dashboard",
     "manageProducts": "Manage Products",
-    "inventory": "Inventory",
     "orders": "Orders",
     "suppliers": "Suppliers",
     "reports": "Reports",
