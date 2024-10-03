@@ -2,6 +2,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
+    '@nuxtjs/tailwindcss'
   ],
   axios: {
     baseURL: process.env.API_URL || 'http://localhost:5000/api',
@@ -29,5 +30,6 @@ export default {
   },
   css: [
     '~/assets/css/global.css',
+    '~/assets/css/tailwind.css'
   ],
 };
