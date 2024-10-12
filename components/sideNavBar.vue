@@ -1,25 +1,74 @@
 <template>
-  <nav class="navbar">
+  <nav class="fixed inset-y-0 left-0 w-64 bg-white text-textDefault flex flex-col py-6 border-customLightGray border-r-2">
     <ul>
-      <li><nuxt-link to="/dashboard">{{$t('navbar.dashboard')}}</nuxt-link></li>
-      <li><nuxt-link to="/products">{{$t('navbar.manageProducts')}}</nuxt-link></li>
-      <li><nuxt-link to="/orders">{{$t('navbar.orders')}}</nuxt-link></li>
-      <li><nuxt-link to="/suppliers">{{$t('navbar.suppliers')}}</nuxt-link></li>
-      <li><nuxt-link to="/reports">{{$t('navbar.reports')}}</nuxt-link></li>
-      <li><nuxt-link to="/users">{{$t('navbar.users')}}</nuxt-link></li>
-      <li><nuxt-link to="/settings">{{$t('navbar.settings')}}</nuxt-link></li>
-      <li><a @click="logout">{{$t('navbar.logout')}}</a></li>
+      <li>
+        <nuxt-link to="/dashboard" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 textDefault hover:bg-customLightBlue hover:text-customDarkBlue">
+          <DashboardIcon class="w-5 h-5 text-current" />
+          <span>{{$t('navbar.dashboard')}}</span>
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/products" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 textDefault hover:bg-customLightBlue hover:text-customDarkBlue">
+          <ManageProductsIcon class="w-5 h-5 text-current" />
+          <span>{{$t('navbar.manageProducts')}}</span>
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/orders" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 textDefault hover:bg-customLightBlue hover:text-customDarkBlue">
+          <OrderIcon class="w-5 h-5 text-current" />
+          <span>{{$t('navbar.orders')}}</span>
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/suppliers" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 textDefault hover:bg-customLightBlue hover:text-customDarkBlue">
+          <suppliersIcon class="w-5 h-5 text-current" />
+          <span>{{$t('navbar.suppliers')}}</span>
+        </nuxt-link>
+      </li>
+      <!-- <li>
+        <nuxt-link to="/reports" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 hover:bg-customLightBlue">
+          <span>{{$t('navbar.reports')}}</span>
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/users" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 hover:bg-customLightBlue">
+          <span>{{$t('navbar.users')}}</span>
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/settings" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 hover:bg-customLightBlue">
+          <span>{{$t('navbar.settings')}}</span>
+        </nuxt-link>
+      </li> -->
     </ul>
-    <div class="language-switcher">
-      <button @click="changeLanguage('en')">English</button>
-      <button @click="changeLanguage('th')">ไทย</button>
+    <div class="mt-auto">
+      <a @click="logout" class="flex items-center space-x-2 px-6 py-3 hover:bg-red-300 cursor-pointer hover:text-red-600">
+        <logoutIcon class="w-5 h-5 text-current" />
+        <span>{{$t('navbar.logout')}}</span>
+      </a>
+      <div class="flex space-x-2">
+        <button @click="changeLanguage('en')" class="px-4 py-2 bg-white text-gray-800 rounded hover:bg-gray-200">English</button>
+        <button @click="changeLanguage('th')" class="px-4 py-2 bg-white text-gray-800 rounded hover:bg-gray-200">ไทย</button>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
+import DashboardIcon from '~/assets/icon/dashboard.svg'
+import ManageProductsIcon from '~/assets/icon/manageProducts.svg'
+import OrderIcon from '~/assets/icon/order.svg'
+import suppliersIcon from '~/assets/icon/suppliers.svg'
+import logoutIcon from '~/assets/icon/logout.svg'
 export default {
-  name: 'sideNavBar',
+  name: 'SideNavBar',
+  components: {
+    DashboardIcon,
+    ManageProductsIcon,
+    OrderIcon,
+    suppliersIcon,
+    logoutIcon
+  },
   methods: {
     logout() {
       this.$store.dispatch('auth/logout')
@@ -33,59 +82,5 @@ export default {
 </script>
 
 <style scoped>
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 100vh;
-  background-color: #333;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
-}
-
-.navbar ul {
-  list-style-type: none;
-  padding: 0;
-  width: 100%;
-}
-
-.navbar li {
-  margin: 10px 0;
-  width: 100%;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: white;
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #444;
-  border-radius: 5px;
-}
-
-.navbar a:hover {
-  background-color: #555;
-}
-
-.language-switcher {
-  margin-top: 20px;
-  padding-left: 15px;
-}
-
-.language-switcher button {
-  background-color: #fff;
-  border: none;
-  padding: 10px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.language-switcher button:hover {
-  background-color: #ddd;
-}
+/* No custom styles needed, everything handled by Tailwind CSS */
 </style>
