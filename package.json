@@ -27,6 +27,7 @@
     "@nuxtjs/tailwindcss": "^6.12.1",
     "eslint-config-prettier": "^8.5.0",
     "postcss": "^8.4.17",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "vue-svg-loader": "^0.16.0"
   }
 }

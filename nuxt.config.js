@@ -32,4 +32,30 @@ export default {
     '~/assets/css/global.css',
     '~/assets/css/tailwind.css'
   ],
+  build: {
+    extend(config) {
+      // แก้ไข rule ของ SVG ที่มีอยู่เดิม
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+
+      // เปลี่ยน rule นี้ให้จัดการเฉพาะไฟล์ภาพที่ไม่ใช่ SVG
+      svgRule.test = /\.(png|jpe?g|gif|webp)$/i
+
+      // เพิ่มกฎใหม่สำหรับการจัดการไฟล์ SVG ด้วย vue-svg-loader
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'vue-svg-loader',
+            options: {
+              svgo: {
+                plugins: [
+                  { removeViewBox: false }, // คงค่า viewBox ไว้เพื่อให้การปรับขนาด SVG ใช้งานได้
+                ],
+              },
+            },
+          },
+        ],
+      })
+    }
+  }
 };
