@@ -10,6 +10,9 @@ module.exports = {
         customDarkBlue: '#1b5df2',
         customLightGray: '#ecedef',
       },
+      margin: {
+        '7.5': '30px',
+      },
     },
   },
   plugins: [],

@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <!-- แสดง sideNavBar เฉพาะเมื่อผู้ใช้เข้าสู่ระบบ -->
+  <div class="h-full">
     <sideNavBar v-if="isAuthenticated" />
 
-    <!-- เนื้อหาหลักของหน้า -->
-    <div :class="{'content-authenticated': isAuthenticated, 'content': !isAuthenticated}">
+    <div class="bg-gray-100 h-full p-[30px]" :class="{'content-authenticated': isAuthenticated, 'content': !isAuthenticated}">
       <Nuxt />
     </div>
   </div>
@@ -18,7 +16,6 @@ export default {
     sideNavBar,
   },
   computed: {
-    // ดึงสถานะการเข้าสู่ระบบจาก Vuex Store
     isAuthenticated() {
       return this.$store.getters['auth/isAuthenticated']
     },
@@ -27,14 +24,11 @@ export default {
 </script>
 
 <style scoped>
-/* สไตล์ปกติเมื่อไม่ได้เข้าสู่ระบบ */
 .content {
   padding: 20px;
 }
 
-/* สไตล์เมื่อเข้าสู่ระบบ (มี Navbar ทางซ้าย) */
 .content-authenticated {
-  margin-left: 240px; /* เพิ่มระยะห่างด้านซ้ายเมื่อมี sideNavBar */
-  padding: 20px;
+  margin-left: 256px;
 }
 </style>
