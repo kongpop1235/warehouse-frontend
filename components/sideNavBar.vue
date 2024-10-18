@@ -21,7 +21,7 @@
       </li>
       <li>
         <nuxt-link to="/suppliers" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 textDefault hover:bg-customLightBlue hover:text-customDarkBlue">
-          <suppliersIcon class="w-5 h-5 text-current" />
+          <SuppliersIcon class="w-5 h-5 text-current" />
           <span>{{$t('navbar.suppliers')}}</span>
         </nuxt-link>
       </li>
@@ -43,7 +43,7 @@
     </ul>
     <div class="mt-auto">
       <a @click="logout" class="flex items-center space-x-2 px-6 py-3 hover:bg-red-300 cursor-pointer hover:text-red-600">
-        <logoutIcon class="w-5 h-5 text-current" />
+        <LogoutIcon class="w-5 h-5 text-current" />
         <span>{{$t('navbar.logout')}}</span>
       </a>
       <div class="flex space-x-2">
@@ -58,16 +58,16 @@
 import DashboardIcon from '~/assets/icon/dashboard.svg'
 import ManageProductsIcon from '~/assets/icon/manageProducts.svg'
 import OrderIcon from '~/assets/icon/order.svg'
-import suppliersIcon from '~/assets/icon/suppliers.svg'
-import logoutIcon from '~/assets/icon/logout.svg'
+import SuppliersIcon from '~/assets/icon/suppliers.svg'
+import LogoutIcon from '~/assets/icon/logout.svg'
 export default {
   name: 'SideNavBar',
   components: {
     DashboardIcon,
     ManageProductsIcon,
     OrderIcon,
-    suppliersIcon,
-    logoutIcon
+    SuppliersIcon,
+    LogoutIcon
   },
   methods: {
     logout() {

@@ -50,7 +50,27 @@
     "costPrice": "ต้นทุนสินค้า",
     "productURL": "URL ของสินค้า",
     "internalNotes": "หมายเหตุภายใน",
-    "add": "เพิ่มสินค้า",
-    "update": "อัปเดตสินค้า"
+    "addProduct": "เพิ่มสินค้า",
+    "update": "อัปเดตสินค้า",
+    "addNewTags": "เพิ่มแท็กใหม่",
+    "addNewCategory": "เพิ่มหมวดหมู่ใหม่",
+    "addCategory": "สร้างหมวดหมู่",
+    "addTags": "สร้างแท็ก",
+    "descriptionCategory": "หมวดหมู่คำอธิบาย",
+    "descriptionTags": "หมวดหมู่คำอธิบาย"
+  },
+  "botton": {
+    "productForm": {
+      "addProduct": "เพิ่มสินค้า"
+    },
+    "yes": "ใช่",
+    "no": "ไม่",
+    "cancel": "ยกเลิก"
+  },
+  "alert": {
+    "confirmCancel": {
+      "header": "ยืนยันการยกเลิก",
+      "detail": "คุณแน่ใจหรือไม่ว่าต้องการยกเลิก? ข้อมูลทั้งหมดที่กรอกไว้จะสูญหายและไม่สามารถกู้คืนได้"
+    }
   }
 }

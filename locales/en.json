@@ -50,7 +50,27 @@
     "costPrice": "Cost Price",
     "productURL": "Product URL",
     "internalNotes": "Internal Notes",
-    "add": "Add Product",
-    "update": "Update Product"
+    "addProduct": "Add Product",
+    "update": "Update Product",
+    "addNewTags": "Add new tags",
+    "addNewCategory": "Add new category",
+    "addCategory": "Create category",
+    "addTags": "Create Tags",
+    "descriptionCategory": "Description category",
+    "descriptionTags": "Description category"
+  },
+  "botton": {
+    "productForm": {
+      "addProduct": "Add Product"
+    },
+    "yes": "yes",
+    "no": "no",
+    "cancel": "Cancel"
+  },
+  "alert": {
+    "confirmCancel": {
+      "header": "Confirm Cancellation",
+      "detail": "Are you sure you want to cancel? All the information you have entered will be lost and cannot be recovered."
+    }
   }
 }

@@ -1,4 +1,5 @@
 {
   "commentTranslate.source": "Google",
-  "commentTranslate.multiLineMerge": true
+  "commentTranslate.multiLineMerge": true,
+  "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

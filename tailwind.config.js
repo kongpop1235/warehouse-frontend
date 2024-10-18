@@ -13,6 +13,9 @@ module.exports = {
       margin: {
         '7.5': '30px',
       },
+      space: {
+        '7.5': '30px',
+      }
     },
   },
   plugins: [],
