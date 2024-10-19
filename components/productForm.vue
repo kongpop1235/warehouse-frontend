@@ -11,30 +11,33 @@
         <textarea v-model="product.description" maxlength="1000" class="input-style"></textarea>
       </div>
 
-      <!-- Category Select using Vue Multiselect with Custom Option Template -->
+      <!-- Category Select -->
       <div>
         <label>{{ $t('productForm.category') }}</label>
         <multiselect
           v-model="product.category"
           :options="categoriesWithAddOption"
-          :multiple="true"
+          :multiple="false"
           :searchable="true"
-          :close-on-select="false"
+          :close-on-select="true"
           :show-labels="false"
           placeholder="Select or add a category"
           @select="handleCategorySelection"
         >
+          <template #singleLabel="{ option }">
+            <span>{{ option[$i18n.locale] }}</span>
+          </template>
           <template #option="{ option }">
             <div v-if="option === 'Add New Category'" class="flex items-center">
               <plusIcon class="w-5 h-5 mr-2" />
               <span>{{ $t('productForm.addNewCategory') }}</span>
             </div>
-            <div v-else>{{ option }}</div>
+            <div v-else>{{ option[$i18n.locale] }}</div>
           </template>
         </multiselect>
       </div>
 
-      <!-- Tags Select using Vue Multiselect with Custom Option Template -->
+      <!-- Tags Select -->
       <div>
         <label>{{ $t('productForm.tags') }}</label>
         <multiselect
@@ -44,6 +47,7 @@
           :searchable="true"
           :close-on-select="false"
           :show-labels="false"
+          :label="$i18n.locale"
           placeholder="Select or add a tag"
           @select="handleTagSelection"
         >
@@ -52,7 +56,7 @@
               <plusIcon class="w-5 h-5 mr-2" />
               <span>{{ $t('productForm.addNewTags') }}</span>
             </div>
-            <div v-else>{{ option }}</div>
+            <div v-else>{{ option[$i18n.locale] }}</div>
           </template>
         </multiselect>
       </div>
@@ -104,10 +108,11 @@
     <transition name="fade" mode="out-in">
       <div v-if="showAddCategoryModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div class="bg-white p-6 rounded-lg shadow-lg z-60 w-full max-w-md">
-          <h3>{{ $t('productForm.addCategory') }}</h3>
-          <input v-model="newCategory" type="text" placeholder="New category" class="input-style mb-4" />
-          <h3>{{ $t('productForm.descriptionCategory') }}</h3>
-          <textarea v-model="newCategoryDescription" maxlength="1000" class="input-style"></textarea>
+          <h3 class="mb-2">{{ $t('productForm.addCategory') }}</h3>
+          <input v-model="newCategory.en" type="text" placeholder="EN" class="input-style mb-4" />
+          <input v-model="newCategory.th" type="text" placeholder="TH" class="input-style mb-4" />
+          <h3 class="mb-2">{{ $t('productForm.descriptionCategory') }}</h3>
+          <textarea v-model="newCategoryDescription" maxlength="1000" class="input-style mb-3"></textarea>
           <div class="flex justify-end space-x-4">
             <button @click="addCategoryFromModal" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Add</button>
             <button @click="showAddCategoryModal = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg">Cancel</button>
@@ -120,10 +125,11 @@
     <transition name="fade" mode="out-in">
       <div v-if="showAddTagsModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div class="bg-white p-6 rounded-lg shadow-lg z-60 w-full max-w-md">
-          <h3>{{ $t('productForm.addTags') }}</h3>
-          <input v-model="newTag" type="text" placeholder="New tag" class="input-style mb-4" />
-          <h3>{{ $t('productForm.descriptionTags') }}</h3>
-          <textarea v-model="newCategoryDescription" maxlength="1000" class="input-style"></textarea>
+          <h3 class="mb-2">{{ $t('productForm.addTags') }}</h3>
+          <input v-model="newTag.en" type="text" placeholder="EN" class="input-style mb-4" />
+          <input v-model="newTag.th" type="text" placeholder="TH" class="input-style mb-4" />
+          <h3 class="mb-2">{{ $t('productForm.descriptionTags') }}</h3>
+          <textarea v-model="newCategoryDescription" maxlength="1000" class="input-style mb-3"></textarea>
           <div class="flex justify-end space-x-4">
             <button @click="addTagFromModal" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Add</button>
             <button @click="showAddTagsModal = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg">Cancel</button>
@@ -142,7 +148,7 @@ import 'vue-multiselect/dist/vue-multiselect.min.css'
 export default {
   components: {
     plusIcon,
-    Multiselect
+    Multiselect,
   },
   props: ['editProduct'],
   data() {
@@ -162,15 +168,15 @@ export default {
         internalNotes: '',
       },
       isEdit: !!this.editProduct,
-      categories: ['Electronics', 'Clothing', 'Accessories'], // Existing category list
-      tags: ['New Arrival', 'On Sale', 'Popular'], // List of available tags
-      showAddCategoryModal: false, // For displaying Modal, add a new Category.
-      showAddTagsModal: false, // For displaying Modal, add new Tags.
-      newCategory: '', // Store a new Category value.
-      newCategoryDescription: '', // Store the description of the new Category.
-      newTag: '', // Store new tags
-      newTagDescription: '', // Store the description of the new Category.
-    }
+      categories: [],
+      tags: [],
+      showAddCategoryModal: false,
+      showAddTagsModal: false,
+      newCategory: {en:"", th:""},
+      newCategoryDescription: '',
+      newTag: {en:"", th:""},
+      newTagDescription: '',
+    };
   },
   computed: {
     categoriesWithAddOption() {
@@ -178,52 +184,99 @@ export default {
     },
     tagsWithAddOption() {
       return ['Add New Tag', ...this.tags];
-    }
+    },
   },
   methods: {
     handleCategorySelection(value) {
       if (value === 'Add New Category') {
         this.showAddCategoryModal = true;
-        this.product.category = ''; // Reset selected value
+        this.product.category = '';
       }
     },
     handleTagSelection(value) {
       if (value === 'Add New Tag') {
         this.showAddTagsModal = true;
-        this.product.tags.pop(); // Remove this option from the list.
+        this.product.tags.pop();
+      }
+    },
+    async fetchCategories() {
+      try {
+        const response = await this.$axios.get('/categories');
+        this.categories = response.data.map(category => category.name);//Update categories
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    },
+    async fetchTags() {
+      try {
+        const response = await this.$axios.get('/tags');
+        this.tags = response.data.map(tag => tag.name); // Update tags
+      } catch (error) {
+        console.error('Error fetching tags:', error);
       }
     },
     addCategoryFromModal() {
-      if (this.newCategory.trim()) {
-        this.categories.push(this.newCategory.trim())
-        this.product.category = this.newCategory.trim()
-        this.newCategory = ''
-        this.showAddCategoryModal = false
+      if (this.newCategory.en.trim() || this.newCategory.th.trim()) {
+        this.$axios.post('/categories', {
+          name: {
+            en: this.newCategory.en.trim(),
+            th: this.newCategory.th.trim()
+          },
+          description: this.newCategoryDescription.trim(),
+        })
+          .then(response => {
+            this.categories.push(response.data.name);
+            this.product.category = response.data.name;
+            this.newCategory = '';
+            this.newCategoryDescription = '';
+            this.showAddCategoryModal = false;
+          })
+          .catch(error => {
+            console.error('Error creating category:', error);
+          });
       }
     },
     addTagFromModal() {
-      if (this.newTag.trim()) {
-        this.tags.push(this.newTag.trim());
-        this.product.tags.push(this.newTag.trim());
-        this.newTag = '';
-        this.showAddTagsModal = false;
+      if (this.newTag.en.trim() || this.newTag.th.trim()) {
+        this.$axios.post('/tags', {
+          name: {
+            en: this.newTag.en.trim(),
+            th: this.newTag.th.trim()
+          },
+          description: this.newTagDescription.trim(),
+        })
+          .then(response => {
+            this.tags.push(response.data.name);
+            this.product.tags.push(response.data.name);
+            this.newTag = '';
+            this.newTagDescription = '';
+            this.showAddTagsModal = false;
+          })
+          .catch(error => {
+            console.error('Error creating tag:', error);
+          });
       }
     },
     async submitForm() {
       try {
         if (this.isEdit) {
-          await this.$axios.put(`/products/${this.product.id}`, this.product)
-          this.$emit('updateProduct', this.product) // Return to the main component.
+          await this.$axios.put(`/products/${this.product.id}`, this.product);
+          this.$emit('updateProduct', this.product);
         } else {
-          const response = await this.$axios.post('/products', this.product)
-          this.$emit('addProduct', response.data) // Send back newly created product information.
+          const response = await this.$axios.post('/products', this.product);
+          this.$emit('addProduct', response.data);
         }
       } catch (error) {
-        console.error('Error submitting product:', error)
+        console.error('Error submitting product:', error);
       }
     },
-  }
-}
+  },
+  mounted() {
+    this.fetchCategories(); // Call a function to retrieve Categories from the API.
+    this.fetchTags(); // Call a function to retrieve tags from the API.
+  },
+};
+
 </script>
 
 <style scoped>
