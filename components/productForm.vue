@@ -211,6 +211,7 @@ export default {
       try {
         const response = await this.$axios.get('/tags');
         this.tags = response.data.map(tag => tag.name); // Update tags
+        this.tags = response.data.map(tag => ({"en": tag.name.en, "th": tag.name.th, "id": tag._id})); // Update tags
       } catch (error) {
         console.error('Error fetching tags:', error);
       }
