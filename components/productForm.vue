@@ -41,7 +41,7 @@
       <div>
         <label>{{ $t('productForm.tags') }}</label>
         <multiselect
-          v-model="product.tags"
+          v-model="tagsSelect"
           :options="tagsWithAddOption"
           :multiple="true"
           :searchable="true"
@@ -49,6 +49,7 @@
           :show-labels="false"
           :label="$i18n.locale"
           placeholder="Select or add a tag"
+          track-by="id"
           @select="handleTagSelection"
         >
           <template #option="{ option }">
@@ -176,6 +177,7 @@ export default {
       newCategoryDescription: '',
       newTag: {en:"", th:""},
       newTagDescription: '',
+      tagsSelect: [],
     };
   },
   computed: {
@@ -196,13 +198,13 @@ export default {
     handleTagSelection(value) {
       if (value === 'Add New Tag') {
         this.showAddTagsModal = true;
-        this.product.tags.pop();
+        // this.product.tags.pop();
       }
     },
     async fetchCategories() {
       try {
         const response = await this.$axios.get('/categories');
-        this.categories = response.data.map(category => category.name);//Update categories
+        this.categories = response.data.map(category => ({"en": category.name.en, "th": category.name.th, "id": category._id}));//Update categories
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
@@ -210,7 +212,6 @@ export default {
     async fetchTags() {
       try {
         const response = await this.$axios.get('/tags');
-        this.tags = response.data.map(tag => tag.name); // Update tags
         this.tags = response.data.map(tag => ({"en": tag.name.en, "th": tag.name.th, "id": tag._id})); // Update tags
       } catch (error) {
         console.error('Error fetching tags:', error);
@@ -226,8 +227,8 @@ export default {
           description: this.newCategoryDescription.trim(),
         })
           .then(response => {
-            this.categories.push(response.data.name);
-            this.product.category = response.data.name;
+            this.categories.push({"en": response.data.name.en, "th": response.data.name.th, "id": response.data._id});
+            this.product.category = {"en": response.data.name.en, "th": response.data.name.th, "id": response.data._id};
             this.newCategory = '';
             this.newCategoryDescription = '';
             this.showAddCategoryModal = false;
@@ -247,8 +248,10 @@ export default {
           description: this.newTagDescription.trim(),
         })
           .then(response => {
-            this.tags.push(response.data.name);
-            this.product.tags.push(response.data.name);
+            const tagsFormat= {"en": response.data.name.en, "th": response.data.name.th, "id": response.data._id};
+            this.tagsSelect.push = tagsFormat;
+            this.tags.push(tagsFormat);
+            // this.product.tags.push(response.data._id);
             this.newTag = '';
             this.newTagDescription = '';
             this.showAddTagsModal = false;
@@ -259,6 +262,8 @@ export default {
       }
     },
     async submitForm() {
+      this.product.tags = this.tagsSelect.filter(tag => tag.id).map(tag => tag.id);
+      this.product.category = this.product.category.id;
       try {
         if (this.isEdit) {
           await this.$axios.put(`/products/${this.product.id}`, this.product);
