@@ -130,10 +130,10 @@
           <input v-model="newTag.en" type="text" placeholder="EN" class="input-style mb-4" />
           <input v-model="newTag.th" type="text" placeholder="TH" class="input-style mb-4" />
           <h3 class="mb-2">{{ $t('productForm.descriptionTags') }}</h3>
-          <textarea v-model="newCategoryDescription" maxlength="1000" class="input-style mb-3"></textarea>
+          <textarea v-model="newTagDescription" maxlength="1000" class="input-style mb-3"></textarea>
           <div class="flex justify-end space-x-4">
             <button @click="addTagFromModal" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Add</button>
-            <button @click="showAddTagsModal = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg">Cancel</button>
+            <button @click="cancelTagFromModal" class="bg-gray-400 text-white px-4 py-2 rounded-lg">Cancel</button>
           </div>
         </div>
       </div>
@@ -198,7 +198,7 @@ export default {
     handleTagSelection(value) {
       if (value === 'Add New Tag') {
         this.showAddTagsModal = true;
-        // this.product.tags.pop();
+        this.tagsSelect.pop();
       }
     },
     async fetchCategories() {
@@ -238,9 +238,9 @@ export default {
           });
       }
     },
-    addTagFromModal() {
+    async addTagFromModal() {
       if (this.newTag.en.trim() || this.newTag.th.trim()) {
-        this.$axios.post('/tags', {
+        await this.$axios.post('/tags', {
           name: {
             en: this.newTag.en.trim(),
             th: this.newTag.th.trim()
@@ -248,8 +248,8 @@ export default {
           description: this.newTagDescription.trim(),
         })
           .then(response => {
-            const tagsFormat= {"en": response.data.name.en, "th": response.data.name.th, "id": response.data._id};
-            this.tagsSelect.push = tagsFormat;
+            const tagsFormat = {"en": response.data.name.en, "th": response.data.name.th, "id": response.data._id};
+            this.tagsSelect.push(tagsFormat);
             this.tags.push(tagsFormat);
             // this.product.tags.push(response.data._id);
             this.newTag = '';
@@ -260,6 +260,12 @@ export default {
             console.error('Error creating tag:', error);
           });
       }
+    },
+    cancelTagFromModal() {
+      this.showAddTagsModal = false;
+      this.newTag = {en:"", th:""};
+      this.newTagDescription = '';
+      return;
     },
     async submitForm() {
       this.product.tags = this.tagsSelect.filter(tag => tag.id).map(tag => tag.id);
