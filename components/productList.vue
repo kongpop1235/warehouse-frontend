@@ -15,7 +15,7 @@
       <tbody>
         <tr v-for="product in products" :key="product._id" class="bg-white border-b">
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ product.name }}</td>
-          <td class="px-6 py-4">{{ product.category }}</td>
+          <td class="px-6 py-4">{{ product.category[$i18n.locale] }}</td>
           <td class="px-6 py-4">{{ product.price }}</td>
           <td class="px-6 py-4">{{ product.discountPrice || '-' }}</td>
           <td class="px-6 py-4">{{ product.stockQuantity }}</td>

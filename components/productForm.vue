@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="m-0">
     <h2 class="text-2xl font-semibold">{{ isEdit ? $t('productForm.editTitle') : $t('productForm.addTitle') }}</h2>
     <form @submit.prevent="submitForm" class="max-h-[500px] overflow-y-auto custom-scrollbar pr-5">
       <div>

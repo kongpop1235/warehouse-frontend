@@ -1,8 +1,8 @@
 <template>
-  <div class="space-y-7.5">
+  <div>
     <h1 class="text-2xl font-bold">{{ $t('navbar.manageProducts') }}</h1>
     <!-- Button for opening the add product form -->
-    <button @click="toggleForm" class="bg-[#1660f8] text-white px-4 py-2 rounded-lg flex items-center space-x-2">
+    <button @click="toggleForm" class="bg-[#1660f8] text-white my-7.5 px-4 py-2 rounded-lg flex items-center space-x-2">
       <plusIcon class="w-5 h-5 text-current" />
       {{ $t('botton.productForm.addProduct') }}
     </button>
@@ -12,7 +12,7 @@
 
     <!-- Form for adding/editing products -->
     <transition name="fade" mode="out-in">
-      <div v-if="showForm" class="fixed inset-0 m-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
+      <div v-if="showForm" class="fixed inset-0 mt-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
         <div class="bg-white p-6 rounded-lg shadow-lg z-50 w-full max-w-md">
           <ProductForm @cancelForm="showCancelConfirmation = true" />
         </div>
