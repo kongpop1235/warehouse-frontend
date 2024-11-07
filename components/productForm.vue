@@ -180,6 +180,7 @@ export default {
       tagsSelect: [],
     };
   },
+  props: ['products'],
   computed: {
     categoriesWithAddOption() {
       return ['Add New Category', ...this.categories];
