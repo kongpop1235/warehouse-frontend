@@ -8,7 +8,7 @@
     </button>
 
     <!-- Show product list -->
-    <ProductList :products="products" />
+    <ProductList :products="products" @delete="handleDeleteProduct" />
 
     <!-- Form for adding/editing products -->
     <transition name="fade" mode="out-in">
@@ -69,6 +69,9 @@ export default {
     handleAddProduct(newProduct) {
       this.products.push(newProduct);
       this.showForm = false;
+    },
+    handleDeleteProduct(productId) {
+      this.products = this.products.filter(product => product._id !== productId);
     }
   },
   async fetch() {
