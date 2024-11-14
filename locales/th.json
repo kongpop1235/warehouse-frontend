@@ -59,6 +59,25 @@
     "descriptionCategory": "หมวดหมู่คำอธิบาย",
     "descriptionTags": "หมวดหมู่คำอธิบาย"
   },
+  "productDetail": {
+    "title": "รายละเอียดสินค้า",
+    "id": "รหัส",
+    "productName": "ชื่อสินค้า",
+    "description": "รายละเอียด",
+    "category": "หมวดหมู่",
+    "tags": "แท็ก",
+    "price": "ราคา",
+    "costPrice": "ราคาต้นทุน",
+    "discountPrice": "ราคาลด",
+    "discountPercentage": "เปอร์เซ็นต์ลด",
+    "stockQuantity": "จำนวนในสต็อก",
+    "supplier": "ผู้จัดจำหน่าย",
+    "productURL": "URL สินค้า",
+    "internalNotes": "หมายเหตุภายใน",
+    "createdAt": "สร้างเมื่อ",
+    "updatedAt": "อัพเดทล่าสุด",
+    "close": "ปิด"
+  },
   "botton": {
     "productForm": {
       "addProduct": "เพิ่มสินค้า"
@@ -71,6 +90,11 @@
     "confirmCancel": {
       "header": "ยืนยันการยกเลิก",
       "detail": "คุณแน่ใจหรือไม่ว่าต้องการยกเลิก? ข้อมูลทั้งหมดที่กรอกไว้จะสูญหายและไม่สามารถกู้คืนได้"
+    },
+    "confirmDelete": {
+      "message": "คุณแน่ใจหรือไม่ว่าต้องการลบสินค้านี้?",
+      "yes": "ใช่",
+      "no": "ไม่"
     }
   }
 }

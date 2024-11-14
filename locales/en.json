@@ -59,6 +59,25 @@
     "descriptionCategory": "Description category",
     "descriptionTags": "Description category"
   },
+  "productDetail": {
+    "title": "Product Detail",
+    "id": "ID",
+    "productName": "Product Name",
+    "description": "Description",
+    "category": "Category",
+    "tags": "Tags",
+    "price": "Price",
+    "costPrice": "Cost Price",
+    "discountPrice": "Discount Price",
+    "discountPercentage": "Discount Percentage",
+    "stockQuantity": "Stock Quantity",
+    "supplier": "Supplier",
+    "productURL": "Product URL",
+    "internalNotes": "Internal Notes",
+    "createdAt": "Created At",
+    "updatedAt": "Last Updated",
+    "close": "Close"
+  },
   "botton": {
     "productForm": {
       "addProduct": "Add Product"
@@ -71,6 +90,11 @@
     "confirmCancel": {
       "header": "Confirm Cancellation",
       "detail": "Are you sure you want to cancel? All the information you have entered will be lost and cannot be recovered."
+    },
+    "confirmDelete": {
+      "message": "Are you sure you want to delete this product?",
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }

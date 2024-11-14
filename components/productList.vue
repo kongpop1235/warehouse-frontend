@@ -22,13 +22,22 @@
           <td class="px-6 py-4">{{ product.supplier || '-' }}</td>
           <td class="px-6 py-4 text-center">
             <ul class="flex justify-center space-x-2.5">
-              <li class="flex cursor-pointer hover:text-blue-600 transition-colors duration-500 ease-in-out">
+              <li
+                class="flex cursor-pointer hover:text-blue-600 transition-colors duration-500 ease-in-out"
+                @click="showProductDetail(product)"
+              >
                 <viewIcon class="w-5 h-5 text-current" />
               </li>
-              <li class="flex cursor-pointer hover:text-yellow-600 transition-colors duration-500 ease-in-out" @click="editProduct(product)">
+              <li
+                class="flex cursor-pointer hover:text-yellow-600 transition-colors duration-500 ease-in-out"
+                @click="editProduct(product)"
+              >
                 <editIcon class="w-5 h-5 text-current" />
               </li>
-              <li class="flex cursor-pointer hover:text-red-600 transition-colors duration-500 ease-in-out" @click="confirmDelete(product._id)">
+              <li
+                class="flex cursor-pointer hover:text-red-600 transition-colors duration-500 ease-in-out"
+                @click="confirmDelete(product._id)"
+              >
                 <deleteIcon class="w-5 h-5 text-current" />
               </li>
             </ul>
@@ -36,41 +45,54 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- Modal for Delete Confirmation -->
     <transition name="fade" mode="out-in">
       <div v-if="showDeleteConfirmation" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-          <p class="text-center mb-4">Are you sure you want to delete this product?</p>
+          <p class="text-center mb-4">{{ $t('alert.confirmDelete.message') }}</p>
           <div class="flex justify-center space-x-4">
-            <button @click="deleteProduct" class="bg-red-600 text-white px-4 py-2 rounded-lg">Yes</button>
-            <button @click="showDeleteConfirmation = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg">No</button>
+            <button @click="deleteProduct" class="bg-red-600 text-white px-4 py-2 rounded-lg">{{ $t('alert.confirmDelete.yes') }}</button>
+            <button @click="showDeleteConfirmation = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg">{{ $t('alert.confirmDelete.no') }}</button>
           </div>
         </div>
+      </div>
+    </transition>
+
+    <!-- Modal for Product Details -->
+    <transition name="fade" mode="out-in">
+      <div v-if="showDetail" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <productDetail :product="selectedProduct" @closeDetail="showDetail = false" />
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-import viewIcon from '~/assets/icon/view.svg'
-import editIcon from '~/assets/icon/edit.svg'
-import deleteIcon from '~/assets/icon/delete.svg'
+import viewIcon from '~/assets/icon/view.svg';
+import editIcon from '~/assets/icon/edit.svg';
+import deleteIcon from '~/assets/icon/delete.svg';
+import productDetail from '~/components/productDetail.vue';
 
 export default {
   components: {
     viewIcon,
     editIcon,
-    deleteIcon
+    deleteIcon,
+    productDetail
   },
   props: ['products'],
   data() {
     return {
       showDeleteConfirmation: false,
       productIdToDelete: null,
+      showDetail: false,
+      selectedProduct: null
     };
   },
   methods: {
     editProduct(product) {
-      this.$emit('edit', product) // Send an event back to the main component.
+      this.$emit('edit', product);
     },
     confirmDelete(productId) {
       this.productIdToDelete = productId;
@@ -78,14 +100,19 @@ export default {
     },
     async deleteProduct() {
       try {
-        await this.$axios.delete(`/products/${this.productIdToDelete}`); // Call API to delete the product
-        this.$emit('delete', this.productIdToDelete); // Emit the delete event to the parent component
+        await this.$axios.delete(`/products/${this.productIdToDelete}`);
+        this.$emit('delete', this.productIdToDelete);
         this.showDeleteConfirmation = false;
         this.productIdToDelete = null;
       } catch (error) {
         console.error('Error deleting product:', error);
       }
     },
-  },
+    showProductDetail(product) {
 }
+      this.selectedProduct = product;
+      this.showDetail = true;
+    }
+  }
+};
 </script>
