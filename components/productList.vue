@@ -109,7 +109,6 @@ export default {
       }
     },
     showProductDetail(product) {
-}
       this.selectedProduct = product;
       this.showDetail = true;
     }

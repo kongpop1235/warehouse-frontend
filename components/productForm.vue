@@ -180,13 +180,44 @@ export default {
       tagsSelect: [],
     };
   },
-  props: ['products'],
   computed: {
     categoriesWithAddOption() {
       return ['Add New Category', ...this.categories];
     },
     tagsWithAddOption() {
       return ['Add New Tag', ...this.tags];
+    },
+  },
+  watch: {
+    editProduct: {
+      handler(newValue) {
+        this.product = newValue || {
+          name: '',
+          description: '',
+          category: '',
+          tags: [],
+          price: 0,
+          discountPrice: 0,
+          discountPercentage: 0,
+          stockQuantity: 0,
+          supplier: '',
+          costPrice: 0,
+          productURL: '',
+          internalNotes: '',
+        };
+        if (newValue && newValue.tags) {
+          this.tagsSelect = newValue.tags.map(tag => ({
+            en: tag.en,
+            th: tag.th,
+            id: tag.id,
+          }));
+        } else {
+          this.tagsSelect = [];
+        }
+
+        this.isEdit = !!newValue;
+      },
+      immediate: true,
     },
   },
   methods: {
@@ -271,12 +302,13 @@ export default {
     async submitForm() {
       this.product.tags = this.tagsSelect.filter(tag => tag.id).map(tag => tag.id);
       this.product.category = this.product.category.id;
+      let response;
       try {
         if (this.isEdit) {
-          await this.$axios.put(`/products/${this.product.id}`, this.product);
-          this.$emit('updateProduct', this.product);
+          response = await this.$axios.put(`/products/${this.product._id}`, this.product);
+          this.$emit('updateProduct', response.data);
         } else {
-          const response = await this.$axios.post('/products', this.product);
+          response = await this.$axios.post('/products', this.product);
           this.$emit('addProduct', response.data);
         }
       } catch (error) {
