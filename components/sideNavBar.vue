@@ -25,6 +25,12 @@
           <span>{{$t('navbar.suppliers')}}</span>
         </nuxt-link>
       </li>
+      <li>
+        <nuxt-link to="/categories" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 textDefault hover:bg-customLightBlue hover:text-customDarkBlue">
+          <CategoryIcon class="w-5 h-5 text-current" />
+          <span>{{$t('navbar.manageCategories')}}</span>
+        </nuxt-link>
+      </li>
       <!-- <li>
         <nuxt-link to="/reports" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 hover:bg-customLightBlue">
           <span>{{$t('navbar.reports')}}</span>
@@ -60,6 +66,7 @@ import ManageProductsIcon from '~/assets/icon/manageProducts.svg'
 import OrderIcon from '~/assets/icon/order.svg'
 import SuppliersIcon from '~/assets/icon/suppliers.svg'
 import LogoutIcon from '~/assets/icon/logout.svg'
+import CategoryIcon from '~/assets/icon/category.svg';
 export default {
   name: 'SideNavBar',
   components: {
@@ -67,7 +74,8 @@ export default {
     ManageProductsIcon,
     OrderIcon,
     SuppliersIcon,
-    LogoutIcon
+    LogoutIcon,
+    CategoryIcon
   },
   methods: {
     logout() {

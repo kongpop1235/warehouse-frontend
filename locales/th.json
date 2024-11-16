@@ -20,7 +20,8 @@
     "reports": "รายงาน",
     "users": "การจัดการผู้ใช้",
     "settings": "การตั้งค่า",
-    "logout": "ออกจากระบบ"
+    "logout": "ออกจากระบบ",
+    "manageCategories": "จัดการหมวดหมู่"
   },
   "productList": {
     "title": "รายการสินค้า",
@@ -77,6 +78,11 @@
     "createdAt": "สร้างเมื่อ",
     "updatedAt": "อัพเดทล่าสุด",
     "close": "ปิด"
+  },
+  "categories": {
+    "addCategory": "เพิ่มหมวดหมู่ใหม่",
+    "name": "ชื่อ",
+    "description": "รายละเอียด"
   },
   "botton": {
     "productForm": {

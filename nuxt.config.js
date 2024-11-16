@@ -34,13 +34,13 @@ export default {
   ],
   build: {
     extend(config) {
-      // แก้ไข rule ของ SVG ที่มีอยู่เดิม
+      // Edit existing SVG rules
       const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
 
-      // เปลี่ยน rule นี้ให้จัดการเฉพาะไฟล์ภาพที่ไม่ใช่ SVG
+      // Change this rule to only handle non-SVG image files.
       svgRule.test = /\.(png|jpe?g|gif|webp)$/i
 
-      // เพิ่มกฎใหม่สำหรับการจัดการไฟล์ SVG ด้วย vue-svg-loader
+      // Added new rules for handling SVG files with vue-svg-loader.
       config.module.rules.push({
         test: /\.svg$/,
         use: [
@@ -49,7 +49,7 @@ export default {
             options: {
               svgo: {
                 plugins: [
-                  { removeViewBox: false }, // คงค่า viewBox ไว้เพื่อให้การปรับขนาด SVG ใช้งานได้
+                  { removeViewBox: false }, // Keep the viewBox value intact to make SVG scaling work.
                 ],
               },
             },
