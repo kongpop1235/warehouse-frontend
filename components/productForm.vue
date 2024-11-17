@@ -106,38 +106,16 @@
     </form>
 
     <!-- Modal adding new Category -->
-    <transition name="fade" mode="out-in">
-      <div v-if="showAddCategoryModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        <div class="bg-white p-6 rounded-lg shadow-lg z-60 w-full max-w-md">
-          <h3 class="mb-2">{{ $t('productForm.addCategory') }}</h3>
-          <input v-model="newCategory.en" type="text" placeholder="EN" class="input-style mb-4" />
-          <input v-model="newCategory.th" type="text" placeholder="TH" class="input-style mb-4" />
-          <h3 class="mb-2">{{ $t('productForm.descriptionCategory') }}</h3>
-          <textarea v-model="newCategoryDescription" maxlength="1000" class="input-style mb-3"></textarea>
-          <div class="flex justify-end space-x-4">
-            <button @click="addCategoryFromModal" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Add</button>
-            <button @click="showAddCategoryModal = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </transition>
-
-    <!-- Modal adding new tags -->
-    <transition name="fade" mode="out-in">
-      <div v-if="showAddTagsModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        <div class="bg-white p-6 rounded-lg shadow-lg z-60 w-full max-w-md">
-          <h3 class="mb-2">{{ $t('productForm.addTags') }}</h3>
-          <input v-model="newTag.en" type="text" placeholder="EN" class="input-style mb-4" />
-          <input v-model="newTag.th" type="text" placeholder="TH" class="input-style mb-4" />
-          <h3 class="mb-2">{{ $t('productForm.descriptionTags') }}</h3>
-          <textarea v-model="newTagDescription" maxlength="1000" class="input-style mb-3"></textarea>
-          <div class="flex justify-end space-x-4">
-            <button @click="addTagFromModal" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Add</button>
-            <button @click="cancelTagFromModal" class="bg-gray-400 text-white px-4 py-2 rounded-lg">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </transition>
+    <AddCategoryModal
+      :show="showAddCategoryModal"
+      @categoryAdded="handleCategoryAdded"
+      @close="showAddCategoryModal = false"
+    />
+    <AddTagsModal
+      :show="showAddTagsModal"
+      @tagAdded="handleTagAdded"
+      @close="showAddTagsModal = false"
+    />
   </div>
 </template>
 
@@ -145,11 +123,15 @@
 import Multiselect from 'vue-multiselect'
 import plusIcon from '~/assets/icon/plus.svg'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
+import AddCategoryModal from '~/components/AddCategoryModal.vue';
+import AddTagsModal from '~/components/AddTagsModal.vue';
 
 export default {
   components: {
     plusIcon,
     Multiselect,
+    AddCategoryModal,
+    AddTagsModal,
   },
   props: ['editProduct'],
   data() {
@@ -173,10 +155,6 @@ export default {
       tags: [],
       showAddCategoryModal: false,
       showAddTagsModal: false,
-      newCategory: {en:"", th:""},
-      newCategoryDescription: '',
-      newTag: {en:"", th:""},
-      newTagDescription: '',
       tagsSelect: [],
     };
   },
@@ -249,56 +227,6 @@ export default {
         console.error('Error fetching tags:', error);
       }
     },
-    addCategoryFromModal() {
-      if (this.newCategory.en.trim() || this.newCategory.th.trim()) {
-        this.$axios.post('/categories', {
-          name: {
-            en: this.newCategory.en.trim(),
-            th: this.newCategory.th.trim()
-          },
-          description: this.newCategoryDescription.trim(),
-        })
-          .then(response => {
-            this.categories.push({"en": response.data.name.en, "th": response.data.name.th, "id": response.data._id});
-            this.product.category = {"en": response.data.name.en, "th": response.data.name.th, "id": response.data._id};
-            this.newCategory = '';
-            this.newCategoryDescription = '';
-            this.showAddCategoryModal = false;
-          })
-          .catch(error => {
-            console.error('Error creating category:', error);
-          });
-      }
-    },
-    async addTagFromModal() {
-      if (this.newTag.en.trim() || this.newTag.th.trim()) {
-        await this.$axios.post('/tags', {
-          name: {
-            en: this.newTag.en.trim(),
-            th: this.newTag.th.trim()
-          },
-          description: this.newTagDescription.trim(),
-        })
-          .then(response => {
-            const tagsFormat = {"en": response.data.name.en, "th": response.data.name.th, "id": response.data._id};
-            this.tagsSelect.push(tagsFormat);
-            this.tags.push(tagsFormat);
-            // this.product.tags.push(response.data._id);
-            this.newTag = '';
-            this.newTagDescription = '';
-            this.showAddTagsModal = false;
-          })
-          .catch(error => {
-            console.error('Error creating tag:', error);
-          });
-      }
-    },
-    cancelTagFromModal() {
-      this.showAddTagsModal = false;
-      this.newTag = {en:"", th:""};
-      this.newTagDescription = '';
-      return;
-    },
     async submitForm() {
       this.product.tags = this.tagsSelect.filter(tag => tag.id).map(tag => tag.id);
       this.product.category = this.product.category.id;
@@ -314,6 +242,16 @@ export default {
       } catch (error) {
         console.error('Error submitting product:', error);
       }
+    },
+    handleCategoryAdded(category) {
+      const tagsCategory = {"en": category.name.en, "th": category.name.th, "id": category._id};
+      this.categories.push(tagsCategory);
+      this.product.category = tagsCategory;
+    },
+    handleTagAdded(tag) {
+      const tagsFormat = {"en": tag.name.en, "th": tag.name.th, "id": tag._id}
+      this.tags.push(tagsFormat);
+      this.tagsSelect.push(tagsFormat);
     },
   },
   mounted() {
