@@ -82,14 +82,18 @@
   "categories": {
     "addCategory": "เพิ่มหมวดหมู่ใหม่",
     "name": "ชื่อ",
-    "description": "รายละเอียด"
+    "description": "รายละเอียด",
+    "editCategory": "แก้ไขหมวดหมู่",
+    "descriptionCategory": "รายละเอียดหมวดหมู่"
   },
-  "botton": {
+  "button": {
     "productForm": {
       "addProduct": "เพิ่มสินค้า"
     },
     "yes": "ใช่",
     "no": "ไม่",
+    "add": "เพิ่ม",
+    "update": "อัปเดต",
     "cancel": "ยกเลิก"
   },
   "alert": {

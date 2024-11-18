@@ -14,7 +14,7 @@
         
       <!-- Add Category Button -->
       <button
-        @click="toggleCategoryForm"
+        @click="showAddCategoryModal = true; editMode = false"
         class="bg-blue-500 text-white px-4 py-2 rounded-lg"
       >
         {{$t('categories.addCategory')}}
@@ -26,8 +26,7 @@
       <thead class="text-xs text-gray-700 uppercase bg-gray-50">
         <tr>
           <th class="px-6 py-3">ID</th>
-          <th class="px-6 py-3">{{$t('categories.name')}} (EN)</th>
-          <th class="px-6 py-3">{{$t('categories.name')}} (TH)</th>
+          <th class="px-6 py-3">{{$t('categories.name')}}</th>
           <th class="px-6 py-3">{{$t('categories.description')}}</th>
         </tr>
       </thead>
@@ -38,23 +37,38 @@
           class="bg-white border-b"
         >
           <td class="px-6 py-4">{{ category._id }}</td>
-          <td class="px-6 py-4">{{ category.name.en }}</td>
-          <td class="px-6 py-4">{{ category.name.th }}</td>
+          <td class="px-6 py-4">{{ category.name[$i18n.locale] }}</td>
           <td class="px-6 py-4">{{ category.description || '-' }}</td>
         </tr>
       </tbody>
     </table>
+    
+    
+    <categoryModal
+      :show="showAddCategoryModal"
+      :mode="editMode ? 'edit' : 'add'"
+      :category="categoryToEdit"
+      @categoryAdded="handleCategoryAdded"
+      @close="showAddCategoryModal = false"
+    />    
   </div>
 </template>
 
 <script>
+import categoryModal from '~/components/categoryModal.vue';
+
 export default {
   name: 'Categories',
+  components: {
+    categoryModal,
+  },
   data() {
     return {
       categories: [], // All categories fetched from the API
       searchQuery: '', // Search input value
-      showForm: false,
+      showAddCategoryModal: false,
+      editMode: false,
+      categoryToEdit: null,
     };
   },
   computed: {
@@ -68,9 +82,6 @@ export default {
     },
   },
   methods: {
-    toggleCategoryForm() {
-      this.showForm = !this.showForm;
-    },
     async fetchCategories() {
       try {
         const response = await this.$axios.get('/categories');
@@ -78,6 +89,9 @@ export default {
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
+    },
+    handleCategoryAdded(category) {
+      this.categories.push(category)
     },
   },
   mounted() {

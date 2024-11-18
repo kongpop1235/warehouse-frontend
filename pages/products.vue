@@ -4,7 +4,7 @@
     <!-- Button for opening the add product form -->
     <button @click="toggleForm" class="bg-[#1660f8] text-white my-7.5 px-4 py-2 rounded-lg flex items-center space-x-2">
       <plusIcon class="w-5 h-5 text-current" />
-      {{ $t('botton.productForm.addProduct') }}
+      {{ $t('button.productForm.addProduct') }}
     </button>
 
     <!-- Show product list -->
@@ -32,10 +32,10 @@
           <p class="text-center mb-4">{{ $t('alert.confirmCancel.detail') }}</p>
           <div class="flex justify-center space-x-4">
             <button @click="confirmCancel" class="bg-red-600 text-white px-4 py-2 rounded-lg">
-              {{ $t('botton.yes') }}
+              {{ $t('button.yes') }}
             </button>
             <button @click="showCancelConfirmation = false" class="bg-gray-400 text-white px-4 py-2 rounded-lg">
-              {{ $t('botton.no') }}
+              {{ $t('button.no') }}
             </button>
           </div>
         </div>

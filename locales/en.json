@@ -82,14 +82,18 @@
   "categories": {
     "addCategory": "Add New Category",
     "name": "Name",
-    "description": "Description"
+    "description": "Description",
+    "editCategory": "Edit Category",
+    "descriptionCategory": "Category Description"
   },
-  "botton": {
+  "button": {
     "productForm": {
       "addProduct": "Add Product"
     },
     "yes": "yes",
     "no": "no",
+    "add": "Add",
+    "update": "Update",
     "cancel": "Cancel"
   },
   "alert": {

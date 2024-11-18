@@ -100,14 +100,15 @@
           {{ isEdit ? $t('productForm.update') : $t('productForm.addProduct') }}
         </button>
         <button @click="$emit('cancelForm')" class="bg-red-600 text-white px-4 py-2 rounded-lg mt-4" type="button">
-          {{ $t('botton.cancel') }}
+          {{ $t('button.cancel') }}
         </button>
       </div>
     </form>
 
     <!-- Modal adding new Category -->
-    <AddCategoryModal
+    <categoryModal
       :show="showAddCategoryModal"
+      :mode="'add'"
       @categoryAdded="handleCategoryAdded"
       @close="showAddCategoryModal = false"
     />
@@ -123,14 +124,14 @@
 import Multiselect from 'vue-multiselect'
 import plusIcon from '~/assets/icon/plus.svg'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
-import AddCategoryModal from '~/components/AddCategoryModal.vue';
+import categoryModal from '~/components/categoryModal.vue';
 import AddTagsModal from '~/components/AddTagsModal.vue';
 
 export default {
   components: {
     plusIcon,
     Multiselect,
-    AddCategoryModal,
+    categoryModal,
     AddTagsModal,
   },
   props: ['editProduct'],
