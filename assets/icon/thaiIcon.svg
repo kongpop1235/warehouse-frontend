@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 105 100">
+  <rect x="2.5" y="0" width="100" height="100" rx="10" ry="10" fill="none" stroke="currentColor" stroke-width="5" />
+  <text x="50%" y="50%" dy=".1em" font-size="45" font-family="Arial, sans-serif" font-weight="600" fill="currentColor" text-anchor="middle" dominant-baseline="middle">
+    TH
+  </text>
+</svg>

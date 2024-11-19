@@ -84,7 +84,12 @@
     "name": "ชื่อ",
     "description": "รายละเอียด",
     "editCategory": "แก้ไขหมวดหมู่",
-    "descriptionCategory": "รายละเอียดหมวดหมู่"
+    "editSuccess": "แก้ไขหมวดหมู่เรียบร้อยแล้ว",
+    "descriptionCategory": "รายละเอียดหมวดหมู่",
+    "deleteCategory": "ลบหมวดหมู่",
+    "deleteConfirmation": "คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่นี้?",
+    "deleteSuccess": "ลบหมวดหมู่เรียบร้อยแล้ว",
+    "actions": "การจัดการ"
   },
   "button": {
     "productForm": {

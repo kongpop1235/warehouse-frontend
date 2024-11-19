@@ -2,13 +2,53 @@
   <transition name="fade" mode="out-in">
     <div v-if="show" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div class="bg-white p-6 rounded-lg shadow-lg z-60 w-full max-w-md">
-        <h3 class="mb-2">
-          {{ mode === 'edit' ? $t('productForm.editCategory') : $t('productForm.addCategory') }}
+        <h3 class="mb-2 text-lg font-semibold">
+          {{ mode === 'edit' ? $t('categories.editCategory') : $t('categories.addCategory') }}
         </h3>
-        <input v-model="categoryData.en" type="text" placeholder="EN" class="input-style mb-4" />
-        <input v-model="categoryData.th" type="text" placeholder="TH" class="input-style mb-4" />
-        <h3 class="mb-2">{{ $t('productForm.descriptionCategory') }}</h3>
-        <textarea v-model="categoryData.description" maxlength="1000" class="input-style mb-3"></textarea>
+        <hr class="-mx-6 border-gray-300 mb-4" />
+        <!-- English Input -->
+        <div class="flex items-center mb-4 relative">
+          <englishIcon class="w-auto h-10 mr-2 text-current text-gray-300" />
+          <input
+            v-model="categoryData.en"
+            maxlength="50"
+            type="text"
+            placeholder="EN"
+            class="input-style flex-1"
+          />
+          <span class="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-400">
+            {{ categoryData.en.length }}/50
+          </span>
+        </div>
+      
+        <!-- Thai Input -->
+        <div class="flex items-center mb-4 relative">
+          <thaiIcon class="w-auto h-10 mr-2 text-current text-gray-300" />
+          <input
+            v-model="categoryData.th"
+            maxlength="50"
+            type="text"
+            placeholder="TH"
+            class="input-style flex-1"
+          />
+          <span class="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-400">
+            {{ categoryData.th.length }}/50
+          </span>
+        </div>
+      
+        <!-- Description Textarea -->
+        <h3 class="mb-2">{{ $t('categories.descriptionCategory') }}</h3>
+        <div class="relative">
+          <textarea
+            v-model="categoryData.description"
+            maxlength="250"
+            class="input-style"
+          ></textarea>
+          <span class="block text-sm text-gray-400 text-left">
+            {{ categoryData.description.length }}/250
+          </span>
+        </div>
+      
         <div class="flex justify-end space-x-4">
           <button
             @click="handleSubmit"
@@ -16,7 +56,7 @@
           >
             {{ mode === 'edit' ? $t('button.update') : $t('button.add') }}
           </button>
-          <button @click="$emit('close')" class="bg-gray-400 text-white px-4 py-2 rounded-lg">
+          <button @click="resetForm()" class="bg-gray-400 text-white px-4 py-2 rounded-lg">
             {{ $t('button.cancel') }}
           </button>
         </div>
@@ -26,7 +66,14 @@
 </template>
 
 <script>
+import thaiIcon from '~/assets/icon/thaiIcon.svg';
+import englishIcon from '~/assets/icon/englishIcon.svg';
+
 export default {
+  components: {
+    thaiIcon,
+    englishIcon
+  },
   props: {
     show: {
       type: Boolean,
@@ -63,6 +110,17 @@ export default {
       },
       immediate: true,
     },
+    mode: {
+      handler(value) {
+        if(value === 'add') {
+          this.categoryData = {
+            en: '',
+            th: '',
+            description: '',
+          }
+        }
+      }
+    }
   },
   methods: {
     async handleSubmit() {

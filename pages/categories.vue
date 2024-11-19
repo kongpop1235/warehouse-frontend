@@ -14,7 +14,7 @@
         
       <!-- Add Category Button -->
       <button
-        @click="showAddCategoryModal = true; editMode = false"
+        @click="editMode = false, showAddCategoryModal = true"
         class="bg-blue-500 text-white px-4 py-2 rounded-lg"
       >
         {{$t('categories.addCategory')}}
@@ -28,6 +28,7 @@
           <th class="px-6 py-3">ID</th>
           <th class="px-6 py-3">{{$t('categories.name')}}</th>
           <th class="px-6 py-3">{{$t('categories.description')}}</th>
+          <th class="px-6 py-3 text-center">{{$t('categories.actions')}}</th>
         </tr>
       </thead>
       <tbody>
@@ -39,6 +40,24 @@
           <td class="px-6 py-4">{{ category._id }}</td>
           <td class="px-6 py-4">{{ category.name[$i18n.locale] }}</td>
           <td class="px-6 py-4">{{ category.description || '-' }}</td>
+          <td class="px-6 py-4 text-center">
+            <div class="flex justify-center space-x-3">
+              <!-- Edit Icon -->
+              <button
+                @click="editCategory(category)"
+                class="hover:text-yellow-500 transition-colors"
+              >
+                <editIcon class="w-5 h-5 text-current" />
+              </button>
+              <!-- Delete Icon -->
+              <button
+                @click="deleteCategory(category._id)"
+                class="hover:text-red-500 transition-colors"
+              >
+                <deleteIcon class="w-5 h-5 text-current" />
+              </button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -49,18 +68,23 @@
       :mode="editMode ? 'edit' : 'add'"
       :category="categoryToEdit"
       @categoryAdded="handleCategoryAdded"
-      @close="showAddCategoryModal = false"
+      @categoryUpdated="handleCategoryUpdated"
+      @close="showAddCategoryModal = false, editMode = false"
     />    
   </div>
 </template>
 
 <script>
 import categoryModal from '~/components/categoryModal.vue';
+import editIcon from '~/assets/icon/edit.svg';
+import deleteIcon from '~/assets/icon/delete.svg';
 
 export default {
   name: 'Categories',
   components: {
     categoryModal,
+    editIcon,
+    deleteIcon,
   },
   data() {
     return {
@@ -92,6 +116,27 @@ export default {
     },
     handleCategoryAdded(category) {
       this.categories.push(category)
+    },
+    handleCategoryUpdated(updatedCategory) {
+      const index = this.categories.findIndex(cat => cat._id === updatedCategory._id);
+      if (index !== -1) {
+        this.categories.splice(index, 1, updatedCategory);
+      }
+    },
+    editCategory(category) {
+      this.categoryToEdit = {"en": category.name.en, "th": category.name.th, "description": category.description, "_id": category._id};
+      this.editMode = true;
+      this.showAddCategoryModal = true;
+    },
+    async deleteCategory(categoryId) {
+      if (confirm(this.$t('categories.confirmDelete'))) {
+        try {
+          await this.$axios.delete(`/categories/${categoryId}`);
+          this.categories = this.categories.filter(cat => cat._id !== categoryId);
+        } catch (error) {
+          console.error('Error deleting category:', error);
+        }
+      }
     },
   },
   mounted() {
