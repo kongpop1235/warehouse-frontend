@@ -21,7 +21,8 @@
     "users": "การจัดการผู้ใช้",
     "settings": "การตั้งค่า",
     "logout": "ออกจากระบบ",
-    "manageCategories": "จัดการหมวดหมู่"
+    "manageCategories": "จัดการหมวดหมู่",
+    "manageTags": "จัดการแท็ก"
   },
   "productList": {
     "title": "รายการสินค้า",
@@ -90,6 +91,12 @@
     "deleteConfirmation": "คุณแน่ใจหรือไม่ว่าต้องการลบหมวดหมู่นี้?",
     "deleteSuccess": "ลบหมวดหมู่เรียบร้อยแล้ว",
     "actions": "การจัดการ"
+  },
+  "tags": {
+    "name": "ชื่อ",
+    "description": "คำอธิบาย",
+    "actions": "การกระทำ",
+    "confirmDelete": "คุณแน่ใจหรือไม่ว่าต้องการลบแท็กนี้?"
   },
   "button": {
     "productForm": {
