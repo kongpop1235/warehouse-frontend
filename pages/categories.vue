@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6 bg-white rounded-lg shadow-lg">
+  <div class="p-6 bg-white rounded-lg">
     <h1 class="text-2xl font-bold mb-4">{{$t('navbar.manageCategories')}}</h1>
     
     <!-- Search Input -->
@@ -37,9 +37,9 @@
           :key="category._id"
           class="bg-white border-b"
         >
-          <td class="px-6 py-4">{{ category._id }}</td>
-          <td class="px-6 py-4">{{ category.name[$i18n.locale] }}</td>
-          <td class="px-6 py-4">{{ category.description || '-' }}</td>
+          <td class="px-6 py-4 w-1/6">{{ category._id }}</td>
+          <td class="px-6 py-4 w-1/3">{{ category.name[$i18n.locale] }}</td>
+          <td class="px-6 py-4 w-1/2">{{ category.description || '-' }}</td>
           <td class="px-6 py-4 text-center">
             <div class="flex justify-center space-x-3">
               <!-- Edit Icon -->

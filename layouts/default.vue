@@ -1,8 +1,8 @@
 <template>
-  <div class="h-full">
+  <div class="h-screen flex flex-col">
     <sideNavBar v-if="isAuthenticated" />
 
-    <div class="bg-gray-100 h-full p-[30px]" :class="{'content-authenticated': isAuthenticated, 'content': !isAuthenticated}">
+    <div class="bg-gray-100 flex-1 p-[30px]" :class="{'content-authenticated': isAuthenticated, 'content': !isAuthenticated}">
       <Nuxt />
     </div>
   </div>
