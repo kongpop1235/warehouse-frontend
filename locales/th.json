@@ -96,7 +96,14 @@
     "name": "ชื่อ",
     "description": "คำอธิบาย",
     "actions": "การกระทำ",
-    "confirmDelete": "คุณแน่ใจหรือไม่ว่าต้องการลบแท็กนี้?"
+    "confirmDelete": "คุณแน่ใจหรือไม่ว่าต้องการลบแท็กนี้?",
+    "addTag": "เพิ่มแท็กใหม่",
+    "editTag": "แก้ไขแท็ก",
+    "deleteTag": "ลบแท็ก",
+    "deleteConfirmation": "คุณแน่ใจหรือไม่ว่าต้องการลบแท็กนี้?",
+    "deleteSuccess": "ลบแท็กเรียบร้อยแล้ว",
+    "editSuccess": "แก้ไขแท็กเรียบร้อยแล้ว",
+    "descriptionTag": "รายละเอียดแท็ก"
   },
   "button": {
     "productForm": {

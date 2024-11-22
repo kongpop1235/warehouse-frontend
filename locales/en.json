@@ -96,7 +96,14 @@
     "name": "Name",
     "description": "Description",
     "actions": "Actions",
-    "confirmDelete": "Are you sure you want to delete this tag?"
+    "confirmDelete": "Are you sure you want to delete this tag?",
+    "addTag": "Add New Tag",
+    "editTag": "Edit Tag",
+    "deleteTag": "Delete Tag",
+    "deleteConfirmation": "Are you sure you want to delete this tag?",
+    "deleteSuccess": "Tag deleted successfully.",
+    "editSuccess": "Tag updated successfully.",
+    "descriptionTag": "Tag Description"
   },
   "button": {
     "productForm": {
