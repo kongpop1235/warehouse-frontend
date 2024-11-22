@@ -112,8 +112,10 @@
       @categoryAdded="handleCategoryAdded"
       @close="showAddCategoryModal = false"
     />
-    <AddTagsModal
+    <!-- Add/Edit Tag Modal -->
+    <tagModal
       :show="showAddTagsModal"
+      :mode="'add'"
       @tagAdded="handleTagAdded"
       @close="showAddTagsModal = false"
     />
@@ -125,14 +127,14 @@ import Multiselect from 'vue-multiselect'
 import plusIcon from '~/assets/icon/plus.svg'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import categoryModal from '~/components/categoryModal.vue';
-import AddTagsModal from '~/components/AddTagsModal.vue';
+import tagModal from '~/components/tagModal.vue';
 
 export default {
   components: {
     plusIcon,
     Multiselect,
     categoryModal,
-    AddTagsModal,
+    tagModal
   },
   props: ['editProduct'],
   data() {
