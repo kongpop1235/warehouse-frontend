@@ -113,12 +113,18 @@ export default {
       }
     },
     async deleteTag(tagId) {
-      if (confirm(this.$t('tags.confirmDelete'))) {
+      if (confirm(this.$t('tags.alert.confirmDelete'))) {
         try {
-          await this.$axios.delete(`/tags/${tagId}`);
+          const response = await this.$axios.delete(`/tags/${tagId}`);
           this.tags = this.tags.filter(tag => tag._id !== tagId);
+          alert(this.$t(response.data.message)); // Display success message
         } catch (error) {
-          console.error('Error deleting tag:', error);
+          if (error.response && error.response.data.message) {
+            alert(this.$t(error.response.data.message)); // Display error message
+          } else {
+            console.error('Error deleting tag:', error);
+            alert(this.$t('tags.alert.deleteError')); // Fallback error message
+          }
         }
       }
     },

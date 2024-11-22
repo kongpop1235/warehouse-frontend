@@ -112,7 +112,16 @@
     "deleteConfirmation": "Are you sure you want to delete this tag?",
     "deleteSuccess": "Tag deleted successfully.",
     "editSuccess": "Tag updated successfully.",
-    "descriptionTag": "Tag Description"
+    "descriptionTag": "Tag Description",
+    "alert": {
+      "confirmCancel": {
+        "header": "Confirm Cancellation",
+        "detail": "Are you sure you want to cancel? All the information you have entered will be lost and cannot be recovered."
+      },
+      "confirmDelete": "Are you sure you want to delete this Tag?",
+      "notFound": "Tag not found.",
+      "referenced": "Tag cannot be deleted as it is referenced by one or more products."
+    }
   },
   "button": {
     "productForm": {
