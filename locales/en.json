@@ -90,7 +90,16 @@
     "deleteCategory": "Delete Category",
     "deleteConfirmation": "Are you sure you want to delete this category?",
     "deleteSuccess": "Category deleted successfully.",
-    "actions": "Actions"
+    "actions": "Actions",
+    "alert": {
+      "confirmCancel": {
+        "header": "Confirm Cancellation",
+        "detail": "Are you sure you want to cancel? All the information you have entered will be lost and cannot be recovered."
+      },
+      "confirmDelete": "Are you sure you want to delete this categories?",
+      "notFound": "Category not found.",
+      "referenced": "Category cannot be deleted as it is referenced by one or more products."
+    }
   },
   "tags": {
     "name": "Name",
