@@ -5,6 +5,9 @@
         <h3 class="mb-2 text-lg font-semibold">
           {{ mode === 'edit' ? $t('tags.editTag') : $t('tags.addTag') }}
         </h3>
+        <hr class="-mx-6 border-gray-300 mb-4" />
+        
+        <!-- English Input -->
         <div class="flex items-center mb-4 relative">
           <englishIcon class="w-auto h-10 mr-2 text-current text-gray-300" />
           <input
@@ -14,7 +17,12 @@
             placeholder="Tag Name (EN)"
             class="input-style flex-1"
           />
+          <span class="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-400">
+            {{ tagData.en.length }}/50
+          </span>
         </div>
+        
+        <!-- Thai Input -->
         <div class="flex items-center mb-4 relative">
           <thaiIcon class="w-auto h-10 mr-2 text-current text-gray-300" />
           <input
@@ -24,13 +32,23 @@
             placeholder="Tag Name (TH)"
             class="input-style flex-1"
           />
+          <span class="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-400">
+            {{ tagData.th.length }}/50
+          </span>
         </div>
+        
+        <!-- Description Textarea -->
         <textarea
           v-model="tagData.description"
           maxlength="250"
           placeholder="Description"
           class="input-style mb-3"
         ></textarea>
+        <span class="block text-sm text-gray-400 text-left">
+          {{ tagData.description.length }}/250
+        </span>
+
+        <!-- Buttons -->
         <div class="flex justify-end space-x-4">
           <button @click="handleSubmit" class="bg-blue-600 text-white px-4 py-2 rounded-lg">
             {{ mode === 'edit' ? $t('button.update') : $t('button.add') }}
