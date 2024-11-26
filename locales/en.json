@@ -16,7 +16,7 @@
     "dashboard": "Dashboard",
     "manageProducts": "Manage Products",
     "orders": "Orders",
-    "suppliers": "Suppliers",
+    "manageSuppliers": "Manage Suppliers",
     "reports": "Reports",
     "users": "User Management",
     "settings": "Settings",
@@ -80,6 +80,43 @@
     "updatedAt": "Last Updated",
     "close": "Close"
   },
+  "suppliers": {
+    "name": "Name",
+    "type": "Type",
+    "status": "Status",
+    "actions": "Actions",
+    "detail": "View Detail",
+    "description": "Description",
+    "contact": "Contact",
+    "address": "Address",
+    "addSupplier": "Add Supplier",
+    "typeManufacturer": "Manufacturer",
+    "typeDistributor": "Distributor",
+    "typeWholesaler": "Wholesaler",
+    "editSupplier": "Edit Supplier",
+    "basicInfo": "Basic Information",
+    "street": "Street Address",
+    "city": "City",
+    "state": "State",
+    "zipcode": "Zip Code",
+    "country": "Country",
+    "phone": "Phone Number",
+    "email": "Email",
+    "website": "Website",
+    "fax": "Fax",
+    "review": "Review Information",
+    "contactPerson": "Contact Person",
+    "contactPersonName": "Contact Name",
+    "contactPersonPosition": "Position",
+    "contactPersonPhone": "Contact Phone",
+    "contactPersonEmail": "Contact Email",
+    "steps": {
+      "basicInfo": "Basic Info",
+      "address": "Address Details",
+      "contact": "Contact Info",
+      "review": "Review & Submit"
+    }
+  },
   "categories": {
     "addCategory": "Add New Category",
     "name": "Name",
@@ -131,7 +168,10 @@
     "no": "no",
     "add": "Add",
     "update": "Update",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next"
   },
   "alert": {
     "confirmCancel": {

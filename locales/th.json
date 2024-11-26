@@ -16,7 +16,7 @@
     "dashboard": "แดชบอร์ด",
     "manageProducts": "จัดการผลิตภัณฑ์",
     "orders": "คำสั่งซื้อ",
-    "suppliers": "ซัพพลายเออร์",
+    "manageSuppliers": "จัดการซัพพลายเออร์",
     "reports": "รายงาน",
     "users": "การจัดการผู้ใช้",
     "settings": "การตั้งค่า",
@@ -32,7 +32,7 @@
     "discountPrice": "ราคาหลังหักส่วนลด",
     "stockQuantity": "จำนวนสต็อก",
     "supplier": "ผู้จัดจำหน่าย",
-    "actions": "การกระทำ",
+    "actions": "การจัดการ",
     "edit": "แก้ไข",
     "delete": "ลบ"
   },
@@ -80,6 +80,43 @@
     "updatedAt": "อัพเดทล่าสุด",
     "close": "ปิด"
   },
+  "suppliers": {
+    "name": "ชื่อ",
+    "type": "ประเภท",
+    "status": "สถานะ",
+    "actions": "การจัดการ",
+    "detail": "ดูรายละเอียด",
+    "description": "รายละเอียด",
+    "contact": "ข้อมูลติดต่อ",
+    "address": "ที่อยู่",
+    "addSupplier": "เพิ่มซัพพลายเออร์",
+    "typeManufacturer": "ผู้ผลิต",
+    "typeDistributor": "ผู้จัดจำหน่าย",
+    "typeWholesaler": "ผู้ค้าส่ง",
+    "editSupplier": "แก้ไขซัพพลายเออร์",
+    "basicInfo": "ข้อมูลพื้นฐาน",
+    "street": "ที่อยู่",
+    "city": "เมือง",
+    "state": "รัฐ",
+    "zipcode": "รหัสไปรษณีย์",
+    "country": "ประเทศ",
+    "phone": "หมายเลขโทรศัพท์",
+    "email": "อีเมล",
+    "website": "เว็บไซต์",
+    "fax": "โทรสาร (Fax)",
+    "contactPerson": "ผู้ติดต่อ",
+    "contactPersonName": "ชื่อผู้ติดต่อ",
+    "contactPersonPosition": "ตำแหน่ง",
+    "contactPersonPhone": "เบอร์โทรผู้ติดต่อ",
+    "contactPersonEmail": "อีเมลผู้ติดต่อ",
+    "review": "ตรวจสอบข้อมูล",
+    "steps": {
+      "basicInfo": "ข้อมูลพื้นฐาน",
+      "address": "รายละเอียดที่อยู่",
+      "contact": "ข้อมูลการติดต่อ",
+      "review": "ตรวจสอบและส่งข้อมูล"
+    }
+  },
   "categories": {
     "addCategory": "เพิ่มหมวดหมู่ใหม่",
     "name": "ชื่อ",
@@ -103,8 +140,8 @@
   },
   "tags": {
     "name": "ชื่อ",
-    "description": "คำอธิบาย",
-    "actions": "การกระทำ",
+    "description": "รายละเอียด",
+    "actions": "การจัดการ",
     "confirmDelete": "คุณแน่ใจหรือไม่ว่าต้องการลบแท็กนี้?",
     "addTag": "เพิ่มแท็กใหม่",
     "editTag": "แก้ไขแท็ก",
@@ -131,7 +168,10 @@
     "no": "ไม่",
     "add": "เพิ่ม",
     "update": "อัปเดต",
-    "cancel": "ยกเลิก"
+    "cancel": "ยกเลิก",
+    "close": "ปิด",
+    "previous": "ย้อนกลับ",
+    "next": "ถัดไป"
   },
   "alert": {
     "confirmCancel": {

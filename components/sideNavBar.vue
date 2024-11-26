@@ -22,7 +22,7 @@
       <li>
         <nuxt-link to="/suppliers" exact-active-class="bg-customLightBlue border-customDarkBlue border-l-4 text-customDarkBlue pl-[24px]" class="flex items-center space-x-2 px-6 py-3 pl-7 textDefault hover:bg-customLightBlue hover:text-customDarkBlue">
           <SuppliersIcon class="w-5 h-5 text-current" />
-          <span>{{$t('navbar.suppliers')}}</span>
+          <span>{{$t('navbar.manageSuppliers')}}</span>
         </nuxt-link>
       </li>
       <li>
