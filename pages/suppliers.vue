@@ -29,7 +29,7 @@
           <th class="px-6 py-3 w-1/3">{{$t('suppliers.name')}}</th>
           <th class="px-6 py-3 w-1/6">{{$t('suppliers.type')}}</th>
           <th class="px-6 py-3 w-1/6">{{$t('suppliers.status')}}</th>
-          <!-- <th class="px-6 py-3 text-center w-1/6">{{$t('suppliers.actions')}}</th> -->
+          <th class="px-6 py-3 text-center w-1/6">{{$t('suppliers.actions')}}</th>
         </tr>
       </thead>
       <tbody>
@@ -49,11 +49,11 @@
               {{ supplier.status }}
             </span>
           </td>
-          <!-- <td class="px-6 py-4 text-center flex gap-x-3">
-            <viewIcon class="w-5 h-5 text-current cursor-pointer hover:text-blue-600 transition-colors duration-500 ease-in-out" @click="viewDetail(supplier)"/>
-            <editIcon class="w-5 h-5 text-current hover:text-yellow-600 transition-colors duration-500 ease-in-out" @click="openEditModal(supplier)"/>
+          <td class="px-6 py-4 text-center flex justify-center items-center gap-x-3 ">
+            <!-- <viewIcon class="w-5 h-5 text-current cursor-pointer hover:text-blue-600 transition-colors duration-500 ease-in-out" @click="viewDetail(supplier)"/>
+            <editIcon class="w-5 h-5 text-current hover:text-yellow-600 transition-colors duration-500 ease-in-out" @click="openEditModal(supplier)"/> -->
             <deleteIcon class="w-5 h-5 text-current hover:text-red-600 transition-colors duration-500 ease-in-out" @click="deleteSupplier(supplier._id)"/>
-          </td> -->
+          </td>
         </tr>
       </tbody>
     </table>
@@ -124,6 +124,18 @@ export default {
       const index = this.suppliers.findIndex(sup => sup._id === updatedSupplier._id);
       if (index !== -1) {
         this.suppliers.splice(index, 1, updatedSupplier);
+      }
+    },
+    async deleteSupplier(supplierId) {
+      if (confirm(this.$t('alert.confirmDelete.suppliers.confirmDelete'))) {
+        try {
+          await this.$axios.delete(`/suppliers/${supplierId}`);
+          this.suppliers = this.suppliers.filter(supplier => supplier._id !== supplierId);
+          alert(this.$t('alert.confirmDelete.suppliers.deleteSuccess'));
+        } catch (error) {
+          console.error('Error deleting supplier:', error);
+          alert(this.$t('alert.confirmDelete.suppliers.deleteError'));
+        }
       }
     },
   },

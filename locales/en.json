@@ -179,9 +179,14 @@
       "detail": "Are you sure you want to cancel? All the information you have entered will be lost and cannot be recovered."
     },
     "confirmDelete": {
-      "message": "Are you sure you want to delete this product?",
-      "yes": "Yes",
-      "no": "No"
+      "product": {
+        "message": "Are you sure you want to delete this product?"
+      },
+      "suppliers": {
+        "confirmDelete": "Are you sure you want to delete this supplier?",
+        "deleteSuccess": "Supplier deleted successfully.",
+        "deleteError": "An error occurred while deleting the supplier."
+      }
     }
   }
 }
