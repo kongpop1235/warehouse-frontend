@@ -51,7 +51,7 @@
           </td>
           <td class="px-6 py-4 text-center flex justify-center items-center gap-x-3 ">
             <viewIcon class="w-5 h-5 text-current cursor-pointer hover:text-blue-600 transition-colors duration-500 ease-in-out" @click="viewDetail(supplier)"/>
-            <!-- <editIcon class="w-5 h-5 text-current hover:text-yellow-600 transition-colors duration-500 ease-in-out" @click="openEditModal(supplier)"/> -->
+            <editIcon class="w-5 h-5 text-current hover:text-yellow-600 transition-colors duration-500 ease-in-out" @click="openEditModal(supplier)"/>
             <deleteIcon class="w-5 h-5 text-current hover:text-red-600 transition-colors duration-500 ease-in-out" @click="deleteSupplier(supplier._id)"/>
           </td>
         </tr>

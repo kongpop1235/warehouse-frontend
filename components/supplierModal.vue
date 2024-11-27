@@ -539,10 +539,10 @@ export default {
     async handleSubmit() {
       try {
         if (this.mode === 'edit') {
-          await this.$axios.put(`/suppliers/${this.supplierData._id}`, this.supplierData);
+          const res = await this.$axios.put(`/suppliers/${this.supplierData._id}`, this.supplierData);
+          this.$emit('supplierUpdated', res.data);
         } else {
           const res = await this.$axios.post('/suppliers', this.supplierData);
-          console.log("res", res);
           this.$emit('supplierAdded', res.data);
         }
         this.$emit('close');
