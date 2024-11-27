@@ -50,8 +50,8 @@
             </span>
           </td>
           <td class="px-6 py-4 text-center flex justify-center items-center gap-x-3 ">
-            <!-- <viewIcon class="w-5 h-5 text-current cursor-pointer hover:text-blue-600 transition-colors duration-500 ease-in-out" @click="viewDetail(supplier)"/>
-            <editIcon class="w-5 h-5 text-current hover:text-yellow-600 transition-colors duration-500 ease-in-out" @click="openEditModal(supplier)"/> -->
+            <viewIcon class="w-5 h-5 text-current cursor-pointer hover:text-blue-600 transition-colors duration-500 ease-in-out" @click="viewDetail(supplier)"/>
+            <!-- <editIcon class="w-5 h-5 text-current hover:text-yellow-600 transition-colors duration-500 ease-in-out" @click="openEditModal(supplier)"/> -->
             <deleteIcon class="w-5 h-5 text-current hover:text-red-600 transition-colors duration-500 ease-in-out" @click="deleteSupplier(supplier._id)"/>
           </td>
         </tr>
@@ -67,6 +67,27 @@
         @supplierUpdated="handleSupplierUpdated"
         @close="showAddSupplierModal = false"
     />
+
+    <!-- Detail Popup -->
+    <transition name="fade" mode="out-in">
+  <div v-if="showDetail" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 py-20">
+    <div 
+      class="bg-white px-10 pt-4 pb-5 rounded-lg shadow-lg w-full max-w-3xl h-full"
+    >
+      <div class="h-[calc(100%-50px)] py-10">
+        <detail :supplierData="selectedSupplier" @close="closeDetail" />
+      </div>
+      <div class="flex justify-end mt-4">
+        <button
+          @click="closeDetail"
+          class="bg-red-600 text-white px-4 py-2 rounded-lg ml-2"
+        >
+          {{ $t('button.cancel') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</transition>
   </div>
 </template>
 
@@ -75,6 +96,7 @@ import viewIcon from '~/assets/icon/view.svg';
 import editIcon from '~/assets/icon/edit.svg';
 import deleteIcon from '~/assets/icon/delete.svg';
 import supplierModal from '~/components/supplierModal.vue';
+import detail from '~/components/supplierDetail.vue'
 
 export default {
   name: 'Suppliers',
@@ -83,6 +105,7 @@ export default {
     editIcon,
     deleteIcon,
     supplierModal,
+    detail
   },
   data() {
     return {
@@ -91,6 +114,8 @@ export default {
       showAddSupplierModal: false,
       editMode: false,
       supplierToEdit: null,
+      showDetail: false,
+      selectedSupplier: null,
     };
   },
   computed: {
@@ -137,6 +162,14 @@ export default {
           alert(this.$t('alert.confirmDelete.suppliers.deleteError'));
         }
       }
+    },
+    viewDetail(supplier) {
+      this.selectedSupplier = supplier;
+      this.showDetail = true;
+    },
+    closeDetail() {
+      this.selectedSupplier = null;
+      this.showDetail = false;
     },
   },
   mounted() {
