@@ -150,6 +150,8 @@
     "deleteSuccess": "ลบแท็กเรียบร้อยแล้ว",
     "editSuccess": "แก้ไขแท็กเรียบร้อยแล้ว",
     "descriptionTag": "รายละเอียดแท็ก",
+    "detailTitle": "รายละเอียดแท็ก",
+    "referencedProducts": "สินค้าที่อ้างอิง",
     "alert": {
       "confirmCancel": {
         "header": "ยืนยันการยกเลิก",
@@ -187,6 +189,10 @@
         "deleteSuccess": "ลบซัพพลายเออร์เรียบร้อยแล้ว",
         "deleteError": "เกิดข้อผิดพลาดในการลบซัพพลายเออร์"
       }
+    },
+    "copy": {
+      "success": "Copied to clipboard!",
+      "error": "Failed to copy."
     }
   }
 }

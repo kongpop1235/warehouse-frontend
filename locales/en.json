@@ -150,6 +150,8 @@
     "deleteSuccess": "Tag deleted successfully.",
     "editSuccess": "Tag updated successfully.",
     "descriptionTag": "Tag Description",
+    "detailTitle": "Tag Details",
+    "referencedProducts": "Referenced Products",
     "alert": {
       "confirmCancel": {
         "header": "Confirm Cancellation",
@@ -187,6 +189,10 @@
         "deleteSuccess": "Supplier deleted successfully.",
         "deleteError": "An error occurred while deleting the supplier."
       }
+    },
+    "copy": {
+      "success": "Copied to clipboard!",
+      "error": "Failed to copy."
     }
   }
 }

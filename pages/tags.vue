@@ -28,7 +28,7 @@
           <th class="px-6 py-3 w-1/6">ID</th>
           <th class="px-6 py-3 w-1/3">{{$t('tags.name')}}</th>
           <th class="px-6 py-3 w-1/3">{{$t('tags.description')}}</th>
-          <th class="px-6 py-3 text-center w-1/6">{{$t('tags.actions')}}</th> <!-- Actions -->
+          <th class="px-6 py-3 text-center w-1/6">{{$t('tags.actions')}}</th>
         </tr>
       </thead>
       <tbody>
@@ -40,21 +40,30 @@
           <td class="px-6 py-4 w-1/6">{{ tag._id }}</td>
           <td class="px-6 py-4 w-1/3">{{ tag.name[$i18n.locale] }}</td>
           <td class="px-6 py-4 w-1/3">{{ tag.description || '-' }}</td>
-          <td class="px-6 py-4 text-center w-1/6">
-            <!-- Edit Icon -->
-            <button
-              @click="openEditModal(tag)"
-              class="hover:text-yellow-500 transition-colors mr-2"
-            >
-              <editIcon class="w-5 h-5 text-current" />
-            </button>
-            <!-- Delete Icon -->
-            <button
-              @click="deleteTag(tag._id)"
-              class="hover:text-red-500 transition-colors"
-            >
-              <deleteIcon class="w-5 h-5 text-current" />
-            </button>
+          <td class="px-6 py-4 text-center">
+            <div class="flex justify-center space-x-3">
+              <!-- View Detail Icon -->
+              <button
+                class="hover:text-blue-600 transition-colors duration-500 ease-in-out"
+                @click="openDetail(tag)"
+              >
+                <viewIcon class="w-5 h-5 text-current" />
+              </button>
+              <!-- Edit Icon -->
+              <button
+                @click="openEditModal(tag)"
+                class="hover:text-yellow-500 transition-colors duration-500 ease-in-out"
+              >
+                <editIcon class="w-5 h-5 text-current" />
+              </button>
+              <!-- Delete Icon -->
+              <button
+                @click="deleteTag(tag._id)"
+                class="hover:text-red-500 transition-colors duration-500 ease-in-out"
+              >
+                <deleteIcon class="w-5 h-5 text-current" />
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -69,13 +78,27 @@
       @tagUpdated="handleTagUpdated"
       @close="closeModal"
     />
+
+    <!-- Detail Modal -->
+    <transition name="fade" mode="out-in">
+      <div
+        v-if="showDetailModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+      >
+        <div class="bg-white px-10 py-6 rounded-lg w-full max-w-3xl h-auto overflow-hidden">
+          <tagDetail :tagData="selectedTag" @close="closeDetailModal" />
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import viewIcon from '~/assets/icon/view.svg';
 import deleteIcon from '~/assets/icon/delete.svg';
 import editIcon from '~/assets/icon/edit.svg';
 import tagModal from '~/components/tagModal.vue';
+import tagDetail from '~/components/tagDetail.vue';
 
 export default {
   name: 'Tags',
@@ -83,14 +106,18 @@ export default {
     deleteIcon,
     editIcon,
     tagModal,
+    viewIcon,
+    tagDetail
   },
   data() {
     return {
-      tags: [], // All tags fetched from the API
-      searchQuery: '', // Search input value
-      showTagModal: false, // Control tag modal visibility
-      editMode: false, // Determine if it's an add or edit action
-      tagToEdit: null, // Data of the tag being edited
+      tags: [],
+      searchQuery: '',
+      showTagModal: false,
+      editMode: false,
+      tagToEdit: null,
+      showDetailModal: false,
+      selectedTag: null,
     };
   },
   computed: {
@@ -151,6 +178,14 @@ export default {
         description: tag.description,
       };
       this.showTagModal = true;
+    },
+    openDetail(tag) {
+      this.selectedTag = tag;
+      this.showDetailModal = true;
+    },
+    closeDetailModal() {
+      this.showDetailModal = false;
+      this.selectedTag = null;
     },
     closeModal() {
       this.showTagModal = false;
