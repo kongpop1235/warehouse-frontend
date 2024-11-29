@@ -152,6 +152,8 @@
     "descriptionTag": "รายละเอียดแท็ก",
     "detailTitle": "รายละเอียดแท็ก",
     "referencedProducts": "สินค้าที่อ้างอิง",
+    "noDescription": "ไม่มีคำอธิบาย",
+    "noReferencedProducts": "ไม่มีสินค้าอ้างอิง",
     "alert": {
       "confirmCancel": {
         "header": "ยืนยันการยกเลิก",

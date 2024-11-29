@@ -42,6 +42,13 @@
           <td class="px-6 py-4 w-1/2">{{ category.description || '-' }}</td>
           <td class="px-6 py-4 text-center">
             <div class="flex justify-center space-x-3">
+              <!-- Detail Icon -->
+              <button
+                class="hover:text-blue-600 transition-colors duration-500"
+                @click="openDetail(category)"
+              >
+                <viewIcon class="w-5 h-5 text-current" />
+              </button>
               <!-- Edit Icon -->
               <button
                 @click="editCategory(category)"
@@ -62,7 +69,7 @@
       </tbody>
     </table>
     
-    
+    <!-- Add/Edit Category Modal -->
     <categoryModal
       :show="showAddCategoryModal"
       :mode="editMode ? 'edit' : 'add'"
@@ -70,7 +77,18 @@
       @categoryAdded="handleCategoryAdded"
       @categoryUpdated="handleCategoryUpdated"
       @close="showAddCategoryModal = false, editMode = false"
-    />    
+    />
+    <!-- Detail Modal -->
+    <transition name="fade" mode="out-in">
+      <div
+        v-if="showDetailModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+      >
+        <div class="bg-white px-10 py-6 rounded-lg w-full max-w-3xl h-auto overflow-hidden">
+          <categoryDetail :categoryData="selectedCategory" @close="closeDetailModal" />
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -78,6 +96,8 @@
 import categoryModal from '~/components/categoryModal.vue';
 import editIcon from '~/assets/icon/edit.svg';
 import deleteIcon from '~/assets/icon/delete.svg';
+import categoryDetail from '~/components/categoryDetail.vue';
+import viewIcon from '~/assets/icon/view.svg';
 
 export default {
   name: 'Categories',
@@ -85,6 +105,8 @@ export default {
     categoryModal,
     editIcon,
     deleteIcon,
+    categoryDetail,
+    viewIcon,
   },
   data() {
     return {
@@ -93,6 +115,8 @@ export default {
       showAddCategoryModal: false,
       editMode: false,
       categoryToEdit: null,
+      showDetailModal: false,
+      selectedCategory: null,
     };
   },
   computed: {
@@ -127,6 +151,14 @@ export default {
       this.categoryToEdit = {"en": category.name.en, "th": category.name.th, "description": category.description, "_id": category._id};
       this.editMode = true;
       this.showAddCategoryModal = true;
+    },
+    openDetail(category) {
+      this.selectedCategory = category;
+      this.showDetailModal = true;
+    },
+    closeDetailModal() {
+      this.showDetailModal = false;
+      this.selectedCategory = null;
     },
     async deleteCategory(categoryId) {
         if (confirm(this.$t('categories.alert.confirmDelete'))) {
