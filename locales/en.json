@@ -156,6 +156,7 @@
     "descriptionTag": "Tag Description",
     "detailTitle": "Tag Details",
     "referencedProducts": "Referenced Products",
+    "noReferencedProducts": "No referenced products available.",
     "alert": {
       "confirmCancel": {
         "header": "Confirm Cancellation",

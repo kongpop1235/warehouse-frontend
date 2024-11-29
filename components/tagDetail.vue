@@ -33,6 +33,10 @@
         </li>
       </ul>
     </div>
+    <div v-else class="mb-4">
+      <h2 class="text-lg font-semibold">{{ $t('tags.referencedProducts') }}</h2>
+      <p>{{ $t('tags.noReferencedProducts') }}</p>
+    </div>
     
     <!-- Close Button -->
     <div class="flex justify-end">
