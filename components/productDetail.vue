@@ -64,7 +64,7 @@
     </div>
     
     <p><span class="text-gray-500">{{ $t('productDetail.stockQuantity') }}</span><br><strong>{{ product.stockQuantity }}</strong></p>
-    <p><span class="text-gray-500">{{ $t('productDetail.supplier') }}</span><br><strong>{{ product.supplier || '-' }}</strong></p>
+    <p><span class="text-gray-500">{{ $t('productDetail.supplier') }}</span><br><strong>{{ product.supplier.name || '-' }}</strong></p>
     
     <p><span class="text-gray-500">{{ $t('productDetail.productURL') }}</span><br>
       <a v-if="product.productURL" :href="product.productURL" target="_blank" class="text-blue-500 underline"><strong>{{ product.productURL }}</strong></a>

@@ -80,7 +80,22 @@
       </div>
       <div>
         <label>{{ $t('productForm.supplier') }}</label>
-        <input v-model="product.supplier" type="text" maxlength="255" class="input-style" />
+        <multiselect
+          v-model="product.supplier"
+          :options="activeSuppliers"
+          :multiple="false"
+          :searchable="true"
+          :close-on-select="true"
+          :show-labels="false"
+          placeholder="Select a supplier"
+        >
+          <template #singleLabel="{ option }">
+            <span>{{ option.name }}</span>
+          </template>
+          <template #option="{ option }">
+            <div>{{ option.name }}</div>
+          </template>
+        </multiselect>
       </div>
       <div>
         <label>{{ $t('productForm.costPrice') }}</label>
@@ -156,6 +171,8 @@ export default {
       isEdit: !!this.editProduct,
       categories: [],
       tags: [],
+      suppliers: [], // Add supplier data array
+      activeSuppliers: [], // Only active suppliers
       showAddCategoryModal: false,
       showAddTagsModal: false,
       tagsSelect: [],
@@ -230,15 +247,26 @@ export default {
         console.error('Error fetching tags:', error);
       }
     },
+    async fetchSuppliers() {
+      try {
+        const response = await this.$axios.get('/suppliers/ids-name-status');
+        this.suppliers = response.data;
+        this.activeSuppliers = this.suppliers.filter(supplier => supplier.status === 'Active');
+      } catch (error) {
+        console.error('Error fetching suppliers:', error);
+      }
+    },
     async submitForm() {
       this.product.tags = this.tagsSelect.filter(tag => tag.id).map(tag => tag.id);
       this.product.category = this.product.category.id;
+      this.product.supplier = this.product.supplier._id; // Save supplier ID
       let response;
       try {
         if (this.isEdit) {
           response = await this.$axios.put(`/products/${this.product._id}`, this.product);
           this.$emit('updateProduct', response.data);
         } else {
+          console.log(this.product)
           response = await this.$axios.post('/products', this.product);
           this.$emit('addProduct', response.data);
         }
@@ -258,8 +286,9 @@ export default {
     },
   },
   mounted() {
-    this.fetchCategories(); // Call a function to retrieve Categories from the API.
-    this.fetchTags(); // Call a function to retrieve tags from the API.
+    this.fetchCategories();
+    this.fetchTags();
+    this.fetchSuppliers();
   },
 };
 

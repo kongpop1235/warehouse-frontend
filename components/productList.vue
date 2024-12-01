@@ -19,7 +19,7 @@
           <td class="px-6 py-4">{{ product.price }}</td>
           <td class="px-6 py-4">{{ product.discountPrice || '-' }}</td>
           <td class="px-6 py-4">{{ product.stockQuantity }}</td>
-          <td class="px-6 py-4">{{ product.supplier || '-' }}</td>
+          <td class="px-6 py-4">{{ product.supplier.name || '-' }}</td>
           <td class="px-6 py-4 text-center">
             <ul class="flex justify-center space-x-2.5">
               <li
