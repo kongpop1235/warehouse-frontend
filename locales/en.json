@@ -131,7 +131,7 @@
     "detailTitle": "Category Details",
     "noDescription": "No description available.",
     "referencedProducts": "Referenced Products",
-    "noReferencedProducts": "No referenced products available.",    
+    "noReferencedProducts": "No referenced products available.",
     "alert": {
       "confirmCancel": {
         "header": "Confirm Cancellation",
@@ -192,7 +192,8 @@
       "suppliers": {
         "confirmDelete": "Are you sure you want to delete this supplier?",
         "deleteSuccess": "Supplier deleted successfully.",
-        "deleteError": "An error occurred while deleting the supplier."
+        "deleteError": "An error occurred while deleting the supplier.",
+        "deleteReferencedError": "Cannot delete supplier because it is associated with one or more products."
       }
     },
     "copy": {

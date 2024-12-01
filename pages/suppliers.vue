@@ -156,10 +156,21 @@ export default {
         try {
           await this.$axios.delete(`/suppliers/${supplierId}`);
           this.suppliers = this.suppliers.filter(supplier => supplier._id !== supplierId);
-          alert(this.$t('alert.confirmDelete.suppliers.deleteSuccess'));
+          this.$toast.success(this.$t('alert.confirmDelete.suppliers.deleteSuccess'));
         } catch (error) {
           console.error('Error deleting supplier:', error);
-          alert(this.$t('alert.confirmDelete.suppliers.deleteError'));
+        
+          // Check if the error is due to referenced products
+          if (
+            error.response &&
+            error.response.status === 400 &&
+            error.response.data.message === 'Cannot delete supplier because there are referenced products.'
+          ) {
+            this.$toast.error(this.$t('alert.confirmDelete.suppliers.deleteReferencedError'));
+          } else {
+            // Handle generic delete errors
+            this.$toast.error(this.$t('alert.confirmDelete.suppliers.deleteError'));
+          }
         }
       }
     },
