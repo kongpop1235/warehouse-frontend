@@ -24,7 +24,7 @@ export default {
       redirectOn: 'root',
     },
   },
-  plugins: ['~/plugins/axios.js', '~/plugins/i18n.js'],
+  plugins: ['~/plugins/axios.js', '~/plugins/i18n.js', '~/plugins/toast.js',],
   router: {
     middleware: 'authRedirect',
   },
