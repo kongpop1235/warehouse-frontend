@@ -14,7 +14,7 @@
 
       <!-- Add Supplier Button -->
       <button
-        @click="showAddSupplierModal = true"
+        @click="showAddsupplierForm = true"
         class="bg-blue-500 text-white px-4 py-2 rounded-lg ml-4"
       >
         {{$t('suppliers.addSupplier')}}
@@ -61,13 +61,13 @@
     </div>
 
     <!-- Add Supplier Modal -->
-    <supplierModal
-        :show="showAddSupplierModal"
+    <supplierForm
+        :show="showAddsupplierForm"
         :mode="editMode ? 'edit' : 'add'"
         :supplier="supplierToEdit"
         @supplierAdded="handleSupplierAdded"
         @supplierUpdated="handleSupplierUpdated"
-        @close="showAddSupplierModal = false"
+        @close="showAddsupplierForm = false"
     />
 
     <!-- Detail Popup -->
@@ -97,7 +97,7 @@
 import viewIcon from '~/assets/icon/view.svg';
 import editIcon from '~/assets/icon/edit.svg';
 import deleteIcon from '~/assets/icon/delete.svg';
-import supplierModal from '~/components/supplierModal.vue';
+import supplierForm from '~/components/supplierForm.vue';
 import detail from '~/components/supplierDetail.vue'
 
 export default {
@@ -106,14 +106,14 @@ export default {
     viewIcon,
     editIcon,
     deleteIcon,
-    supplierModal,
+    supplierForm,
     detail
   },
   data() {
     return {
       suppliers: [],
       searchQuery: '',
-      showAddSupplierModal: false,
+      showAddsupplierForm: false,
       editMode: false,
       supplierToEdit: null,
       showDetail: false,
@@ -145,7 +145,7 @@ export default {
     openEditModal(supplier) {
       this.supplierToEdit = supplier;
       this.editMode = true;
-      this.showAddSupplierModal = true;
+      this.showAddsupplierForm = true;
     },
     handleSupplierUpdated(updatedSupplier) {
       const index = this.suppliers.findIndex(sup => sup._id === updatedSupplier._id);

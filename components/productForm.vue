@@ -121,14 +121,14 @@
     </form>
 
     <!-- Modal adding new Category -->
-    <categoryModal
-      :show="showAddCategoryModal"
+    <categoryForm
+      :show="showAddcategoryForm"
       :mode="'add'"
       @categoryAdded="handleCategoryAdded"
-      @close="showAddCategoryModal = false"
+      @close="showAddcategoryForm = false"
     />
     <!-- Add/Edit Tag Modal -->
-    <tagModal
+    <tagForm
       :show="showAddTagsModal"
       :mode="'add'"
       @tagAdded="handleTagAdded"
@@ -141,15 +141,15 @@
 import Multiselect from 'vue-multiselect'
 import plusIcon from '~/assets/icon/plus.svg'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
-import categoryModal from '~/components/categoryModal.vue';
-import tagModal from '~/components/tagModal.vue';
+import categoryForm from '~/components/categoryForm.vue';
+import tagForm from '~/components/tagForm.vue';
 
 export default {
   components: {
     plusIcon,
     Multiselect,
-    categoryModal,
-    tagModal
+    categoryForm,
+    tagForm
   },
   props: ['editProduct'],
   data() {
@@ -173,7 +173,7 @@ export default {
       tags: [],
       suppliers: [], // Add supplier data array
       activeSuppliers: [], // Only active suppliers
-      showAddCategoryModal: false,
+      showAddcategoryForm: false,
       showAddTagsModal: false,
       tagsSelect: [],
     };
@@ -221,7 +221,7 @@ export default {
   methods: {
     handleCategorySelection(value) {
       if (value === 'Add New Category') {
-        this.showAddCategoryModal = true;
+        this.showAddcategoryForm = true;
         this.product.category = '';
       }
     },

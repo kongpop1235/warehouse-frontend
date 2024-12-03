@@ -14,7 +14,7 @@
         
       <!-- Add Category Button -->
       <button
-        @click="editMode = false, showAddCategoryModal = true"
+        @click="editMode = false, showAddcategoryForm = true"
         class="bg-blue-500 text-white px-4 py-2 rounded-lg"
       >
         {{$t('categories.addCategory')}}
@@ -70,13 +70,13 @@
     </table>
     
     <!-- Add/Edit Category Modal -->
-    <categoryModal
-      :show="showAddCategoryModal"
+    <categoryForm
+      :show="showAddcategoryForm"
       :mode="editMode ? 'edit' : 'add'"
       :category="categoryToEdit"
       @categoryAdded="handleCategoryAdded"
       @categoryUpdated="handleCategoryUpdated"
-      @close="showAddCategoryModal = false, editMode = false"
+      @close="showAddcategoryForm = false, editMode = false"
     />
     <!-- Detail Modal -->
     <transition name="fade" mode="out-in">
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import categoryModal from '~/components/categoryModal.vue';
+import categoryForm from '~/components/categoryForm.vue';
 import editIcon from '~/assets/icon/edit.svg';
 import deleteIcon from '~/assets/icon/delete.svg';
 import categoryDetail from '~/components/categoryDetail.vue';
@@ -102,7 +102,7 @@ import viewIcon from '~/assets/icon/view.svg';
 export default {
   name: 'Categories',
   components: {
-    categoryModal,
+    categoryForm,
     editIcon,
     deleteIcon,
     categoryDetail,
@@ -112,7 +112,7 @@ export default {
     return {
       categories: [], // All categories fetched from the API
       searchQuery: '', // Search input value
-      showAddCategoryModal: false,
+      showAddcategoryForm: false,
       editMode: false,
       categoryToEdit: null,
       showDetailModal: false,
@@ -150,7 +150,7 @@ export default {
     editCategory(category) {
       this.categoryToEdit = {"en": category.name.en, "th": category.name.th, "description": category.description, "_id": category._id};
       this.editMode = true;
-      this.showAddCategoryModal = true;
+      this.showAddcategoryForm = true;
     },
     openDetail(category) {
       this.selectedCategory = category;

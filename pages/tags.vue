@@ -70,8 +70,8 @@
     </table>
 
     <!-- Add/Edit Tag Modal -->
-    <tagModal
-      :show="showTagModal"
+    <tagForm
+      :show="showtagForm"
       :mode="editMode ? 'edit' : 'add'"
       :tag="tagToEdit"
       @tagAdded="handleTagAdded"
@@ -97,7 +97,7 @@
 import viewIcon from '~/assets/icon/view.svg';
 import deleteIcon from '~/assets/icon/delete.svg';
 import editIcon from '~/assets/icon/edit.svg';
-import tagModal from '~/components/tagModal.vue';
+import tagForm from '~/components/tagForm.vue';
 import tagDetail from '~/components/tagDetail.vue';
 
 export default {
@@ -105,7 +105,7 @@ export default {
   components: {
     deleteIcon,
     editIcon,
-    tagModal,
+    tagForm,
     viewIcon,
     tagDetail
   },
@@ -113,7 +113,7 @@ export default {
     return {
       tags: [],
       searchQuery: '',
-      showTagModal: false,
+      showtagForm: false,
       editMode: false,
       tagToEdit: null,
       showDetailModal: false,
@@ -167,7 +167,7 @@ export default {
     openAddModal() {
       this.editMode = false;
       this.tagToEdit = null;
-      this.showTagModal = true;
+      this.showtagForm = true;
     },
     openEditModal(tag) {
       this.editMode = true;
@@ -177,7 +177,7 @@ export default {
         th: tag.name.th,
         description: tag.description,
       };
-      this.showTagModal = true;
+      this.showtagForm = true;
     },
     openDetail(tag) {
       this.selectedTag = tag;
@@ -188,7 +188,7 @@ export default {
       this.selectedTag = null;
     },
     closeModal() {
-      this.showTagModal = false;
+      this.showtagForm = false;
       this.editMode = false;
       this.tagToEdit = null;
     },
