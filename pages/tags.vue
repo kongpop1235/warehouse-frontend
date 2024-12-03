@@ -144,13 +144,13 @@ export default {
         try {
           const response = await this.$axios.delete(`/tags/${tagId}`);
           this.tags = this.tags.filter(tag => tag._id !== tagId);
-          alert(this.$t(response.data.message)); // Display success message
+          this.$toast.success(this.$t(response.data.message)); // Display success message
         } catch (error) {
           if (error.response && error.response.data.message) {
-            alert(this.$t(error.response.data.message)); // Display error message
+            this.$toast.error(this.$t(error.response.data.message)); // Display error message
           } else {
             console.error('Error deleting tag:', error);
-            alert(this.$t('tags.alert.deleteError')); // Fallback error message
+            this.$toast.error(this.$t('tags.alert.deleteError')); // Fallback error message
           }
         }
       }

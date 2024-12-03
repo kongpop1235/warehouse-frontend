@@ -70,11 +70,11 @@ export default {
     copyToClipboard(text) {
       navigator.clipboard.writeText(text)
         .then(() => {
-          alert(this.$t('alert.copy.success'));
+          this.$toast.success(this.$t('alert.copy.success'));
         })
         .catch((err) => {
           console.error('Could not copy text: ', err);
-          alert(this.$t('alert.copy.error'));
+          this.$toast.error(this.$t('alert.copy.error'));
         });
     },
   },

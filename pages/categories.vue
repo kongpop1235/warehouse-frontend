@@ -165,13 +165,13 @@ export default {
             try {
                 await this.$axios.delete(`/categories/${categoryId}`);
                 this.categories = this.categories.filter(cat => cat._id !== categoryId);
-                alert(this.$t('categories.deleteSuccess')); // Show success message
+                this.$toast.success(this.$t('categories.deleteSuccess')); // Show success message
             } catch (error) {
                 if (error.response && error.response.status === 400) {
-                    alert(this.$t(error.response.data.message)); // Display the error message from the back-end
+                    this.$toast.error(this.$t(error.response.data.message)); // Display the error message from the back-end
                 } else {
                     console.error('Error deleting category:', error);
-                    alert(this.$t('categories.deleteError')); // Fallback message for unexpected errors
+                    this.$toast.error(this.$t('categories.deleteError')); // Fallback message for unexpected errors
                 }
             }
         }

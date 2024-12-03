@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-6 bg-white rounded-lg">
     <h1 class="text-2xl font-bold">{{ $t('navbar.manageProducts') }}</h1>
     <!-- Button for opening the add product form -->
     <button @click="toggleForm" class="bg-[#1660f8] text-white my-7.5 px-4 py-2 rounded-lg flex items-center space-x-2">
@@ -8,7 +8,9 @@
     </button>
 
     <!-- Show product list -->
-    <ProductList :products="products" @edit="handleEditProduct" @delete="handleDeleteProduct" />
+    <div class="overflow-x-auto">
+      <ProductList :products="products" @edit="handleEditProduct" @delete="handleDeleteProduct" />
+    </div>
 
     <!-- Form for adding/editing products -->
     <transition name="fade" mode="out-in">

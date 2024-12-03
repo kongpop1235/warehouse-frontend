@@ -16,7 +16,7 @@ if (process.client) {
     draggable: true,
     draggablePercent: 0.60,
     showCloseButtonOnHover: false,
-    hideProgressBar: true,
+    hideProgressBar: false,
     closeButton: "button",
     icon: true,
     rtl: false,
