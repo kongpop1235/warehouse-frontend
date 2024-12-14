@@ -93,6 +93,8 @@
     "typeManufacturer": "Manufacturer",
     "typeDistributor": "Distributor",
     "typeWholesaler": "Wholesaler",
+    "statusActive": "Active",
+    "statusInactive": "Inactive",
     "editSupplier": "Edit Supplier",
     "basicInfo": "Basic Information",
     "street": "Street Address",
@@ -167,6 +169,46 @@
       "referenced": "Tag cannot be deleted as it is referenced by one or more products."
     }
   },
+  "orderForm": {
+    "customerInformation": "Customer Information",
+    "products": "Products",
+    "paymentInformation": "Payment Information",
+    "review": "Review Order",
+    "customerName": "Customer Name",
+    "customerEmail": "Customer Email",
+    "customerPhone": "Customer Phone",
+    "customerAddress": "Customer Address",
+    "paymentMethod": "Payment Method",
+    "paymentStatus": "Payment Status",
+    "transactionId": "Transaction ID",
+    "addOrder": "Add Order",
+    "updateOrder": "Update Order",
+    "productSelection": "Product Selection",
+    "subTotal": "Subtotal",
+    "address": "Address",
+    "street": "Street",
+    "city": "City",
+    "state": "State",
+    "zipcode": "Zipcode",
+    "country": "Country",
+    "addProduct": "Add Product",
+    "price": "Price",
+    "quantity": "Quantity",
+    "totalPrice": "Total Price",
+    "selectProducts": "Select Products",
+    "invalidSelection": "Please select a product and specify a valid quantity.",
+    "productName": "Product Name",
+    "stock": "Stock",
+    "category": "Category",
+    "tags": "Tag",
+    "discountPrice": "Discount Price",
+    "discountPercentage": "Discount Percentage",
+    "netPrice": "Net price"
+  },
+  "orderList": {
+    "title": "Order List",
+    "addOrder": "Add Order"
+  },
   "button": {
     "productForm": {
       "addProduct": "Add Product"
@@ -178,7 +220,8 @@
     "cancel": "Cancel",
     "close": "Close",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "remove": "Remove"
   },
   "alert": {
     "confirmCancel": {

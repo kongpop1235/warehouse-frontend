@@ -93,6 +93,8 @@
     "typeManufacturer": "ผู้ผลิต",
     "typeDistributor": "ผู้จัดจำหน่าย",
     "typeWholesaler": "ผู้ค้าส่ง",
+    "statusActive": "ใช้งาน",
+    "statusInactive": "ไม่ได้ใช้งาน",
     "editSupplier": "แก้ไขซัพพลายเออร์",
     "basicInfo": "ข้อมูลพื้นฐาน",
     "street": "ที่อยู่",
@@ -164,6 +166,46 @@
       "referenced": "ไม่สามารถลบแท็กได้เนื่องจากมีการอ้างอิง"
     }
   },
+  "orderForm": {
+    "customerInformation": "ข้อมูลลูกค้า",
+    "products": "สินค้า",
+    "paymentInformation": "ข้อมูลการชำระเงิน",
+    "review": "ตรวจสอบคำสั่งซื้อ",
+    "customerName": "ชื่อลูกค้า",
+    "customerEmail": "อีเมลลูกค้า",
+    "customerPhone": "เบอร์โทรศัพท์ลูกค้า",
+    "customerAddress": "ที่อยู่ลูกค้า",
+    "paymentMethod": "วิธีการชำระเงิน",
+    "paymentStatus": "สถานะการชำระเงิน",
+    "transactionId": "รหัสธุรกรรม",
+    "addOrder": "เพิ่มคำสั่งซื้อ",
+    "updateOrder": "อัปเดตคำสั่งซื้อ",
+    "productSelection": "การเลือกสินค้า",
+    "subTotal": "ยอดรวมย่อย",
+    "address": "ที่อยู่",
+    "street": "ถนน",
+    "city": "เมือง",
+    "state": "รัฐ/จังหวัด",
+    "zipcode": "รหัสไปรษณีย์",
+    "country": "ประเทศ",
+    "addProduct": "เพิ่มสินค้า",
+    "price": "ราคา",
+    "quantity": "จำนวน",
+    "totalPrice": "ราคารวม",
+    "selectProducts": "เลือกสินค้า",
+    "invalidSelection": "กรุณาเลือกสินค้าและระบุจำนวนที่ถูกต้อง",
+    "productName": "ชื่อสินค้า",
+    "stock": "สินค้าคงเหลือ",
+    "category": "หมวดหมู่",
+    "tags": "แท็ก",
+    "discountPrice": "ราคาส่วนลด",
+    "discountPercentage": "เปอร์เซ็นต์ส่วนลด",
+    "netPrice": "ราคาสุทธิ"
+  },
+  "orderList": {
+    "title": "รายการคำสั่งซื้อ",
+    "addOrder": "เพิ่มคำสั่งซื้อ"
+  },
   "button": {
     "productForm": {
       "addProduct": "เพิ่มสินค้า"
@@ -175,7 +217,8 @@
     "cancel": "ยกเลิก",
     "close": "ปิด",
     "previous": "ย้อนกลับ",
-    "next": "ถัดไป"
+    "next": "ถัดไป",
+    "remove": "ลบ"
   },
   "alert": {
     "confirmCancel": {

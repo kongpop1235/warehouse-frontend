@@ -14,7 +14,7 @@
 
       <!-- Add Supplier Button -->
       <button
-        @click="showAddsupplierForm = true"
+        @click="showAddsupplierForm = true; editMode = false"
         class="bg-blue-500 text-white px-4 py-2 rounded-lg ml-4"
       >
         {{$t('suppliers.addSupplier')}}
@@ -72,24 +72,24 @@
 
     <!-- Detail Popup -->
     <transition name="fade" mode="out-in">
-  <div v-if="showDetail" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 py-20">
-    <div 
-      class="bg-white px-10 pt-4 pb-5 rounded-lg shadow-lg w-full max-w-3xl h-full"
-    >
-      <div class="h-[calc(100%-50px)] py-10">
-        <detail :supplierData="selectedSupplier" @close="closeDetail" />
-      </div>
-      <div class="flex justify-end mt-4">
-        <button
-          @click="closeDetail"
-          class="bg-red-600 text-white px-4 py-2 rounded-lg ml-2"
+      <div v-if="showDetail" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 py-20">
+        <div 
+          class="bg-white px-10 pt-4 pb-5 rounded-lg shadow-lg w-full max-w-3xl h-full"
         >
-          {{ $t('button.cancel') }}
-        </button>
+          <div class="h-[calc(100%-50px)] py-10">
+            <detail :supplierData="selectedSupplier" @close="closeDetail" />
+          </div>
+          <div class="flex justify-end mt-4">
+            <button
+              @click="closeDetail"
+              class="bg-red-600 text-white px-4 py-2 rounded-lg ml-2"
+            >
+              {{ $t('button.cancel') }}
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</transition>
+    </transition>
   </div>
 </template>
 

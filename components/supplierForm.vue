@@ -82,17 +82,34 @@
                   {{ supplierData.description.length }}/1000
                 </span>
               </div>
-              <div class="w-1/3">
-                <p class="mb-1">{{$t('suppliers.type')}}</p>
-                <multiselect
-                  v-model="supplierData.type"
-                  :options="typeOptions"
-                  :multiple="false"
-                  :close-on-select="true"
-                  :show-labels="false"
-                  placeholder=""
-                  class="w-full"
-                />
+              <div class="flex w-full gap-x-3">
+                <div class="w-1/2">
+                  <p class="mb-1">{{$t('suppliers.type')}}</p>
+                  <multiselect
+                    v-model="supplierData.type"
+                    :options="typeOptions"
+                    :multiple="false"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder=""
+                    class="w-full"
+                  />
+                </div>
+                <div
+                  class="w-1/2" 
+                  v-if="mode === 'edit'"
+                >
+                  <p class="mb-1">{{$t('suppliers.status')}}</p>
+                  <multiselect
+                    v-model="supplierData.status"
+                    :options="typeStatus"
+                    :multiple="false"
+                    :close-on-select="true"
+                    :show-labels="false"
+                    placeholder=""
+                    class="w-full"
+                  />
+                </div>
               </div>
             </div>
 
@@ -452,9 +469,15 @@ export default {
   computed: {
     typeOptions() {
       return [
-        this.$t('suppliers.typeManufacturer'), // Manufacturer
-        this.$t('suppliers.typeDistributor'),  // Distributor
-        this.$t('suppliers.typeWholesaler'),   // Wholesaler
+        this.$t('suppliers.typeManufacturer'),
+        this.$t('suppliers.typeDistributor'),
+        this.$t('suppliers.typeWholesaler'),
+      ];
+    },
+    typeStatus() {
+      return [
+        this.$t('suppliers.statusActive'),
+        this.$t('suppliers.statusInactive'),
       ];
     },
     isAllStepsValid() {
