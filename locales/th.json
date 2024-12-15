@@ -59,7 +59,9 @@
     "addCategory": "สร้างหมวดหมู่",
     "addTags": "สร้างแท็ก",
     "descriptionCategory": "หมวดหมู่คำอธิบาย",
-    "descriptionTags": "หมวดหมู่คำอธิบาย"
+    "descriptionTags": "หมวดหมู่คำอธิบาย",
+    "invalidDiscountPercentage": "สามารถตั้งค่าได้ตั้งแต่ 0 ถึง 100 เท่านั้น",
+    "invalidDiscountPrice": "ส่วนลดไม่สามารถมากกว่าราคาได้"
   },
   "productDetail": {
     "title": "รายละเอียดสินค้า",

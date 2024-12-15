@@ -1,19 +1,20 @@
 <template>
   <div class="m-0">
-    <h2 class="text-2xl font-semibold">{{ isEdit ? $t('productForm.editTitle') : $t('productForm.addTitle') }}</h2>
-    <form @submit.prevent="submitForm" class="max-h-[500px] overflow-y-auto custom-scrollbar pr-5">
-      <div>
-        <label>{{ $t('productForm.name') }}</label>
+    <h2 class="text-2xl font-semibold mx-6 mb-6">{{ isEdit ? $t('productForm.editTitle') : $t('productForm.addTitle') }}</h2>
+    <hr/>
+    <form @submit.prevent="submitForm" class="max-h-[500px] overflow-y-auto custom-scrollbar mx-6 pr-1">
+      <div class="mb-4 mt-2">
+        <p class="mb-1">{{ $t('productForm.name') }}</p>
         <input v-model="product.name" type="text" required maxlength="255" class="input-style" />
       </div>
-      <div>
-        <label>{{ $t('productForm.description') }}</label>
+      <div class="mb-4">
+        <p class="mb-1">{{ $t('productForm.description') }}</p>
         <textarea v-model="product.description" maxlength="1000" class="input-style"></textarea>
       </div>
 
       <!-- Category Select -->
-      <div>
-        <label>{{ $t('productForm.category') }}</label>
+      <div class="mb-4">
+        <p class="mb-1">{{ $t('productForm.category') }}</p>
         <multiselect
           v-model="product.category"
           :options="categoriesWithAddOption"
@@ -38,8 +39,8 @@
       </div>
 
       <!-- Tags Select -->
-      <div>
-        <label>{{ $t('productForm.tags') }}</label>
+      <div class="mb-4">
+        <p class="mb-1">{{ $t('productForm.tags') }}</p>
         <multiselect
           v-model="tagsSelect"
           :options="tagsWithAddOption"
@@ -62,24 +63,48 @@
         </multiselect>
       </div>
 
-      <div>
-        <label>{{ $t('productForm.price') }}</label>
-        <input v-model="product.price" type="number" required class="input-style" />
+      <div class="mb-7">
+        <p class="mb-1">{{ $t('productForm.price') }}</p>
+        <input v-model.number="product.price" type="number" required min="0" class="input-style" />
       </div>
-      <div>
-        <label>{{ $t('productForm.discountPrice') }}</label>
-        <input v-model="product.discountPrice" type="number" class="input-style" />
+      <div class="mb-7 relative">
+        <p class="mb-1">{{ $t('productForm.discountPrice') }}</p>
+        <input 
+          v-model.number="product.discountPrice" 
+          type="number" 
+          :max="product.price" 
+          min="0" 
+          class="input-style" 
+        />
+        <transition name="fade">
+          <p v-if="product.discountPrice > product.price || product.discountPrice < 0" 
+             class="text-red-500 text-sm absolute top-full mt-1">
+            {{ $t('productForm.invalidDiscountPrice') }}
+          </p>
+        </transition>
       </div>
-      <div>
-        <label>{{ $t('productForm.discountPercentage') }}</label>
-        <input v-model="product.discountPercentage" type="number" step="0.01" min="0" max="100" class="input-style" />
+      <div class="mb-7 relative">
+        <p class="mb-1">{{ $t('productForm.discountPercentage') }}</p>
+        <input 
+          v-model.number="product.discountPercentage" 
+          type="number" 
+          step="0.01" 
+          min="0" 
+          max="100" 
+          class="input-style" 
+        />
+        <transition name="fade">
+          <p v-if="product.discountPercentage < 0 || product.discountPercentage > 100" class="text-red-500 text-sm absolute top-full mt-1">
+            {{ $t('productForm.invalidDiscountPercentage') }}
+          </p>
+        </transition>
       </div>
-      <div>
-        <label>{{ $t('productForm.stockQuantity') }}</label>
-        <input v-model="product.stockQuantity" type="number" required class="input-style" />
+      <div class="mb-7">
+        <p class="mb-1">{{ $t('productForm.stockQuantity') }}</p>
+        <input v-model.number="product.stockQuantity" type="number" required min="0" class="input-style" />
       </div>
-      <div>
-        <label>{{ $t('productForm.supplier') }}</label>
+      <div class="mb-7">
+        <p class="mb-1">{{ $t('productForm.supplier') }}</p>
         <multiselect
           v-model="product.supplier"
           :options="activeSuppliers"
@@ -97,16 +122,16 @@
           </template>
         </multiselect>
       </div>
-      <div>
-        <label>{{ $t('productForm.costPrice') }}</label>
-        <input v-model="product.costPrice" type="number" required class="input-style" />
+      <div class="mb-7">
+        <p class="mb-1">{{ $t('productForm.costPrice') }}</p>
+        <input v-model.number="product.costPrice" type="number" required min="0" class="input-style" />
       </div>
-      <div>
-        <label>{{ $t('productForm.productURL') }}</label>
+      <div class="mb-7">
+        <p class="mb-1">{{ $t('productForm.productURL') }}</p>
         <input v-model="product.productURL" type="text" maxlength="500" class="input-style" />
       </div>
       <div>
-        <label>{{ $t('productForm.internalNotes') }}</label>
+        <p class="mb-1">{{ $t('productForm.internalNotes') }}</p>
         <textarea v-model="product.internalNotes" maxlength="500" class="input-style"></textarea>
       </div>
 

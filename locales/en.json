@@ -59,7 +59,9 @@
     "addCategory": "Create category",
     "addTags": "Create Tags",
     "descriptionCategory": "Description category",
-    "descriptionTags": "Description category"
+    "descriptionTags": "Description category",
+    "invalidDiscountPercentage": "Can be set from 0 to 100 only.",
+    "invalidDiscountPrice": "Discount cannot be greater than price."
   },
   "productDetail": {
     "title": "Product Detail",

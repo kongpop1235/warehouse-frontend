@@ -15,7 +15,7 @@
     <!-- Form for adding/editing products -->
     <transition name="fade" mode="out-in">
       <div v-if="showForm" class="fixed inset-0 mt-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
-        <div class="bg-white p-6 rounded-lg shadow-lg z-50 w-full max-w-md">
+        <div class="bg-white py-6 rounded-lg shadow-lg z-50 w-full max-w-md">
           <ProductForm
             :editProduct="productToEdit" 
             @addProduct="handleAddProduct" 
