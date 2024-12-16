@@ -5,8 +5,8 @@
         <tr>
           <th class="px-6 py-3">{{ $t('productList.name') }}</th>
           <th class="px-6 py-3">{{ $t('productList.category') }}</th>
+          <th class="px-6 py-3">{{ $t('productList.tags') }}</th>
           <th class="px-6 py-3">{{ $t('productList.price') }}</th>
-          <th class="px-6 py-3">{{ $t('productList.discountPrice') }}</th>
           <th class="px-6 py-3">{{ $t('productList.stockQuantity') }}</th>
           <th class="px-6 py-3">{{ $t('productList.supplier') }}</th>
           <th class="px-6 py-3 text-center">{{ $t('productList.actions') }}</th>
@@ -16,8 +16,18 @@
         <tr v-for="product in products" :key="product._id" class="bg-white border-b">
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ product.name }}</td>
           <td class="px-6 py-4">{{ product.category[$i18n.locale] }}</td>
+          <td class="px-6 py-4">
+            <div class="flex flex-wrap gap-1">
+              <span
+                v-for="tag in product.tags"
+                :key="tag.id"
+                class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded"
+              >
+                {{ tag[$i18n.locale] }}
+              </span>
+            </div>
+          </td>
           <td class="px-6 py-4">{{ product.price }}</td>
-          <td class="px-6 py-4">{{ product.discountPrice || '-' }}</td>
           <td class="px-6 py-4">{{ product.stockQuantity }}</td>
           <td class="px-6 py-4">{{ product.supplier.name || '-' }}</td>
           <td class="px-6 py-4 text-center">

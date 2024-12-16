@@ -34,7 +34,8 @@
     "supplier": "ผู้จัดจำหน่าย",
     "actions": "การจัดการ",
     "edit": "แก้ไข",
-    "delete": "ลบ"
+    "delete": "ลบ",
+    "tags": "แท็ก"
   },
   "productForm": {
     "addTitle": "เพิ่มสินค้าใหม่",

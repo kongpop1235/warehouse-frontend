@@ -34,7 +34,8 @@
     "supplier": "Supplier",
     "actions": "Actions",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "tags": "tags"
   },
   "productForm": {
     "addTitle": "Add New Product",
